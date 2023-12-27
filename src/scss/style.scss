@@ -1,1 +1,66 @@
+@use "reset";
+
+.header{
+  height: 10vh;
+  border: 1px solid black;
+  display: flex;
+
+  &--nav {
+    display: flex;
+    width: 90%;
+    align-items: center;
+    margin-left: 1rem;
+   
+    
+    ul{
+        list-style: none;
+        display: flex;
+        gap: 1rem;
+        
+        a{
+          text-decoration: none;
+          cursor: pointer;
+
+          &:hover{
+            text-decoration: underline;
+          }
+        }
+      }
+  }
+  
+  &--cartIcon {
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.main {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--text{
+        color:white;
+        font-size: 120px;
+        position: absolute;
+    }
+
+    &--imgContainerW {
+      width: 50%;
+      height: 100%;
+      background-image: url("./src/img/woman-runway.png");
+      background-size: cover;
+
+    }
+
+    &--imgContainerM {
+        width: 50%;
+        height: 100%;
+        background-image: url("./src/img/man-runway.png");
+        background-size: cover; 
+      }  
+}
 
