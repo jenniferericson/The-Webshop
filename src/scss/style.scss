@@ -1,7 +1,7 @@
 @use "reset";
 
 .header{
-  height: 10vh;
+  height: 5vh;
   border: 1px solid black;
   display: flex;
 
@@ -47,19 +47,42 @@
         position: absolute;
     }
 
+    &--pW{
+      transition: 0.3s;
+    }
+    &--pM{
+      transition: 0.3s;
+    }
+
     &--imgContainerW {
       width: 50%;
       height: 100%;
       background-image: url("./src/img/woman-runway.png");
       background-size: cover;
-
+      cursor: pointer;
+      
+      &:hover{
+        .main--pW{
+          color: white;
+          padding: 1rem;
+        }
+      }
     }
-
+  
     &--imgContainerM {
         width: 50%;
         height: 100%;
         background-image: url("./src/img/man-runway.png");
-        background-size: cover; 
-      }  
+        background-size: cover;
+        cursor: pointer;
+
+        &:hover{
+          .main--pM{
+            color: white;
+            padding: 1rem;
+          }
+        }
+      }
+
 }
 
