@@ -65,8 +65,15 @@
 
 #productsContainer {
   display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 1rem;
+  grid-template-columns: repeat(4,1fr);
+  //gap: 1rem;
+  //margin: 1rem;
+}
+
+#productsMContainer {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  //gap: 1rem;
   //margin: 1rem;
 }
 
@@ -78,11 +85,28 @@
   padding: 1rem;
 
   &--img{
-    height: 20rem;
+    height: 15rem;
     width: auto;
   }
 
   &--title{
     margin: 1rem;
+  }
+}
+
+.pageTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin: 1rem;
+
+  &--h1 {
+    font-size: 40px;
+  }
+
+  &--p {
+    font-size: 15px;
+    padding-right: 15rem;
+    margin-top: 10px;
   }
 }
