@@ -72,6 +72,7 @@
      
 }
 
+/* styling för produktsida */
 #productsContainer {
   display: grid;
   grid-template-columns: repeat(2,1fr);
@@ -84,7 +85,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 1rem;
+
+  &:hover{
+    opacity: 50%;
+    .productBox--btn{
+      display: block;
+      opacity: 100%;
+    }
+  }
 
   &--img{
     height: 20rem;
@@ -94,7 +104,22 @@
   &--title{
     margin: 1rem;
   }
+  &--btn{
+    position: absolute;
+    display: none;
+    cursor: pointer;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 20px;
+    border: 1px solid #222;
+
+    &:hover{
+      background-color: #222;
+      color: white;
+    }
+  }
 }
+
 
 #searchInput {
   border: none;
@@ -104,3 +129,6 @@
   font-size: 16px; 
   outline: none;
 }
+
+
+
