@@ -81,22 +81,25 @@
         height: 100%;
         background-image: url("./src/img/man-runway.png");
         background-size: cover; 
+
+        &:hover{
+          .main--pM{
+            color: white;
+            padding: 1rem;
+          }
       }  
+ }
 }
 
 /* styling för produktsida */
 #productsContainer {
   display: grid;
   grid-template-columns: repeat(4,1fr);
-  //gap: 1rem;
-  //margin: 1rem;
 }
 
 #productsMContainer {
   display: grid;
   grid-template-columns: repeat(4,1fr);
-  //gap: 1rem;
-  //margin: 1rem;
 }
 
 .productBox {
@@ -131,7 +134,7 @@
     padding: 0.5rem;
     border-radius: 20px;
     border: 1px solid #222;
-
+  
     &:hover{
       background-color: #222;
       color: white;
