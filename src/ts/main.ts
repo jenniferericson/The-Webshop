@@ -1,4 +1,4 @@
-import { getProducts } from "../services/productService";
+import { getMProducts, getProducts } from "../services/productService";
 import "./../scss/style.scss";
 
 const productsContainer = document.getElementById("productsContainer");
@@ -40,6 +40,31 @@ for (let i = 0; i < products.length; i++) {
 }
 
 
+const productsMContainer = document.getElementById("productsMContainer");
+
+const productsM = await getMProducts();
+
+for (let i = 0; i < productsM.length; i++) {
+  const productBox = document.createElement("div");
+  const img = document.createElement("img");
+  const title = document.createElement("h2");
+  const price = document.createElement("p");
+
+  productBox.className = ("productBox");
+  img.className = ("productBox--img");
+  title.className = ("productBox--title");
+  price.className = ("productBox--price");
+
+  img.src = productsM[i].image;
+  title.innerHTML = productsM[i].title;
+  price.innerHTML = productsM[i].price +" $".toString();
+  
+  productBox.appendChild(img);
+  productBox.appendChild(title);
+  productBox.appendChild(price);
+
+  productsMContainer?.appendChild(productBox);
+}
 
 
 

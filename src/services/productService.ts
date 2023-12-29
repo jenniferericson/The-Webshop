@@ -8,5 +8,12 @@ export const getProducts = async ():Promise <IProduct[]> => {
     return data;
 };
 
+export const getMProducts = async ():Promise <IProduct[]> => {
+    const url = "https://fakestoreapi.com/products/category/men's%20clothing";
+    const data = await get<IProduct[]>(url);
+
+    return data;
+};
+
 
 
