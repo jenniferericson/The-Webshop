@@ -54,22 +54,34 @@
         position: absolute;
     }
 
+    &--pW{
+      transition: 0.3s;
+    }
+    &--pM{
+      transition: 0.3s;
+    }
+
     &--imgContainerW {
       width: 50%;
       height: 100%;
       background-image: url("./src/img/woman-runway.png");
       background-size: cover;
-
+      cursor: pointer;
+      
+      &:hover{
+        .main--pW{
+          color: white;
+          padding: 1rem;
+        }
+      }
     }
-
+  
     &--imgContainerM {
         width: 50%;
         height: 100%;
         background-image: url("./src/img/man-runway.png");
         background-size: cover; 
-
       }  
-     
 }
 
 /* styling för produktsida */
