@@ -1,14 +1,15 @@
 @use "reset";
+@use "mixins";
+@use "variables" as v;
 
+/* styling för nav bar */
 .header{
   height: 10vh;
-  //border: 1px solid black;
   display: flex;
 
   &--nav {
-    display: flex;
+    @include mixins.flex;
     width: 90%;
-    align-items: center;
     margin-left: 1rem;
    
     ul{
@@ -18,7 +19,7 @@
         
         a{
           text-decoration: none;
-          cursor: pointer;
+          cursor: v.$click;
 
           &:hover{
             text-decoration: underline;
@@ -29,24 +30,30 @@
   
   &--cartIcon {
     width: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include mixins.flex-justify;
   }
 
   &--searchInput {
-    display: flex;
-    align-items: center;
+    @include mixins.flex;
     margin-top:25px;
   }
 }
 
+#searchInput {
+  border: none;
+  border-bottom: 2px solid v.$border-colour;
+  padding: 5px;
+  margin-bottom: 15px; 
+  font-size: v.$small-text; 
+  outline: none;
+}
+
+/* styling för landningssida */
 
 .main {
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include mixins.flex-justify;
+  
 
     &--text{
         color:white;
@@ -62,54 +69,42 @@
     }
 
     &--imgContainerW {
-      width: 50%;
-      height: 100%;
+      @include mixins.heroImg;
       background-image: url("./src/img/woman-runway.png");
-      background-size: cover;
-      cursor: pointer;
       
       &:hover{
         .main--pW{
-          color: white;
-          padding: 1rem;
+          @include mixins.hoverHero;
         }
       }
     }
   
     &--imgContainerM {
-        width: 50%;
-        height: 100%;
+        @include mixins.heroImg;
         background-image: url("./src/img/man-runway.png");
-        background-size: cover; 
-        cursor: pointer;
-
+      
         &:hover{
           .main--pM{
-            color: white;
-            padding: 1rem;
+            @include mixins.hoverHero;
           }
       }  
  }
 }
 
 /* styling för produktsida */
-#productsContainer {
-  display: grid;
-  grid-template-columns: repeat(4,1fr);
+#productsWContainer {
+  @include mixins.productsContainer;
 }
 
 #productsMContainer {
-  display: grid;
-  grid-template-columns: repeat(4,1fr);
+  @include mixins.productsContainer;
 }
 
 .productBox {
-  border: 1px solid black;
-  display: flex;
+  @include mixins.flex-justify;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
+  //justify-content: stretch;
+  margin-top: 20px;
 
   &:hover{
     opacity: 50%;
@@ -120,51 +115,53 @@
   }
 
   &--img{
-    height: 15rem;
-    width: auto;
+    height: 450px;
+    width: 100%;
+    border: 1px solid v.$border-colour;
+    padding: 1rem;
   }
 
   &--title{
-    margin: 1rem;
+    align-self: flex-start;
+    margin-top: 1rem;
+    font-size: v.$small-text;
   }
+
+  &--price{
+    align-self: flex-start;
+    margin-top: 10px;
+    font-size: 18px;
+    
+  }
+
   &--btn{
     position: absolute;
     display: none;
-    cursor: pointer;
-    border: none;
+    cursor: v.$click;
     padding: 0.5rem;
     border-radius: 20px;
-    border: 1px solid #222;
+    border: 1px solid v.$border-colour;
   
     &:hover{
-      background-color: #222;
+      background-color: v.$border-colour;
       color: white;
     }
   }
-}
-
-
-#searchInput {
-  border: none;
-  border-bottom: 2px solid #333;
-  padding: 5px;
-  margin-bottom: 15px; 
-  font-size: 16px; 
-  outline: none;
 }
 
 .pageTitle {
   display: flex;
   flex-direction: column;
   align-items: start;
-  margin: 1rem;
+  margin-top: 2rem;
+  margin-left: 1rem;
 
   &--h1 {
     font-size: 40px;
   }
 
   &--p {
-    font-size: 15px;
+    font-size: v.$small-text;
     padding-right: 15rem;
     margin-top: 10px;
   }
