@@ -140,7 +140,7 @@ const shoppingCartHtml = () => {
     price.innerHTML = shoppingCartList[i].price +" $".toString();
 
     if(summaryOfValue){
-      summaryOfValue.innerHTML = "Total sum: " + sum.toString() +"$";
+      summaryOfValue.innerHTML = "Sum: " + sum.toString() +"$";
     }
     
     imgContainer.appendChild(img);
