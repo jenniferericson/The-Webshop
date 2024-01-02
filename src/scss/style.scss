@@ -1,5 +1,5 @@
 @use "reset";
-
+/* Header */
 .header{
   height: 10vh;
   //border: 1px solid black;
@@ -38,10 +38,15 @@
     display: flex;
     align-items: center;
     margin-top:25px;
+
+    svg {
+      width: 30px;
+      cursor: pointer;
+    }
   }
 }
 
-
+/* Main */
 .main {
     height: 100vh;
     display: flex;
@@ -143,7 +148,32 @@
   }
 }
 
+/* Styling för kassasida */
 
+#shoppingCartContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+
+  .cartButton {
+    display: flex;
+    background-color: black;
+    color: white;
+    border-radius: 15px;
+    cursor: pointer;
+    padding: 5px;
+  }
+  #sum-buttonDiv {
+    border: black solid 1px;
+    margin: 500px;
+    padding: 20px;
+   
+  }
+}
+
+
+/* Övrig styling*/
 #searchInput {
   border: none;
   border-bottom: 2px solid #333;
@@ -168,4 +198,10 @@
     padding-right: 15rem;
     margin-top: 10px;
   }
+}
+
+#title-shoppingbag {
+  display: flex;
+  margin: 1rem;
+  font-size: 40px;
 }
