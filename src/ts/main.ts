@@ -170,7 +170,6 @@ const showShoppingCartValue = ()=> {
   localStorage.setItem("cartValue", JSON.stringify(cartValue));
     cartValueTag.innerHTML = "";
     cartValueTag.innerHTML = cartValue.toString();
-    cartValue +=1;
 }
 
 showShoppingCartValue();
