@@ -11,10 +11,17 @@
       <nav class="header--nav">
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="products.html">Products</a></li>
-          <li><a href="#">About us</a></li>
+          <li><a href="womens.html">Woman</a></li>
+          <li><a href="mens.html">Man</a></li>
         </ul>
       </nav>
+      <div class="header--searchInput">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+        </svg>
+        
+        <input type="text" id="searchInput" name="name" placeholder='Sök '>
+      </div>
       <div class="header--cartIcon">
         <a href="shoppingCart.html">
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
@@ -23,8 +30,12 @@
        </a>
       </div>
     </header>
+    <h1 id="title-shoppingbag">Shoppingbag</h1>
     <main id="shoppingCartContainer">
-        
+      <div id="sum-buttonDiv">
+      <p>Sum:</p>
+      <button class="cartButton">Proceed to checkout</button>
+      </div>
     </main>
 
     <script type="module" src="src/ts/main.ts"></script>
