@@ -104,7 +104,7 @@
   @include mixins.flex-justify;
   flex-direction: column;
   //justify-content: stretch;
-  margin-top: 20px;
+  margin-bottom: 20px;
 
   &:hover{
     opacity: 50%;
@@ -118,7 +118,7 @@
     height: 450px;
     width: 100%;
     border: 1px solid v.$border-colour;
-    padding: 1rem;
+    padding: 1.5rem;
   }
 
   &--title{
@@ -164,5 +164,6 @@
     font-size: v.$small-text;
     padding-right: 15rem;
     margin-top: 10px;
+    margin-bottom: 20px;
   }
-}
+} 
