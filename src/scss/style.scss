@@ -123,7 +123,7 @@
   flex-direction: column;
   //justify-content: stretch;
   margin-bottom: 20px;
-
+  
   &:hover{
     opacity: 50%;
     .productBox--btn{
@@ -131,7 +131,7 @@
       opacity: 100%;
     }
   }
-
+  
   &--title{
     align-self: flex-start;
     margin-top: 1rem;

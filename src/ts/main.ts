@@ -90,6 +90,7 @@ for (let i = 0; i < productsM.length; i++) {
 }
 
 /* Loop för varukorg lista */
+const shoppingCartContainer = document.getElementById("shoppingCartContainer");
 
 let shoppingCartList:IProduct[] = [];
 
@@ -99,32 +100,30 @@ if (valueFromLs) {
   shoppingCartList = JSON.parse(valueFromLs);
 };
 
-const shoppingCartContainer = document.getElementById("shoppingCartContainer");
-
 const shoppingCartHtml = () => {
-
+  
   localStorage.setItem("shoppingCartList", JSON.stringify(shoppingCartList));
   
   console.log(shoppingCartList);
-
-    for(let i = 0; i < shoppingCartList.length; i++){
-      const productBox = document.createElement("div");
-      const img = document.createElement("img");
-      const title = document.createElement("p");
-      const price = document.createElement("p");
-      
-
-      img.src = shoppingCartList[i].image;
-      title.innerHTML = shoppingCartList[i].title;
-      price.innerHTML = shoppingCartList[i].price +" $".toString();
-
-      productBox.appendChild(img);
-      productBox.appendChild(title);
-      productBox.appendChild(price);
-      shoppingCartContainer?.appendChild(productBox);
+  
+  for(let i = 0; i < shoppingCartList.length; i++){
+    const productBox = document.createElement("div");
+    const img = document.createElement("img");
+    const title = document.createElement("p");
+    const price = document.createElement("p");
+    
+    img.src = shoppingCartList[i].image;
+    title.innerHTML = shoppingCartList[i].title;
+    price.innerHTML = shoppingCartList[i].price +" $".toString();
+    
+    productBox.appendChild(img);
+    productBox.appendChild(title);
+    productBox.appendChild(price);
+    shoppingCartContainer?.appendChild(productBox);
+  };
 };
-};
 
+shoppingCartHtml()
 
 
 
