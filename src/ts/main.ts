@@ -12,7 +12,8 @@ const storedCartValue = localStorage.getItem("cartValue");
 if (storedCartValue){
   cartValue=JSON.parse(storedCartValue);
 }
-/* Hämta produkter på woman sidan*/
+
+/* Hämta produkter på dam sidan*/
 const productsWContainer = document.getElementById("productsWContainer");
 
 const productsW = await getWProducts();
@@ -98,8 +99,7 @@ for (let i = 0; i < productsM.length; i++) {
   
 }
 
-
-/* Loop för varukorg lista */
+// Skapande av varukorg lista och local storage getItem
 const shoppingCartContainer = document.getElementById("shoppingCartContainer");
 
 let shoppingCartList:IProduct[] = [];
@@ -108,8 +108,29 @@ const valueFromLs = localStorage.getItem("shoppingCartList");
 
 if (valueFromLs) {
   shoppingCartList = JSON.parse(valueFromLs);
-};
+}else {
+  // Innehåll som visas när varukorgen är tom
+  const emtpyTitle = document.createElement("h3");
+  const continueShoppingBtn = document.createElement("btn");
 
+  emtpyTitle.className = ("emptyTitle");
+  continueShoppingBtn.className = ("continueShoppingBtn");
+
+  emtpyTitle.innerHTML = "Your shopping bag is empty!";
+  continueShoppingBtn.innerHTML = "Continue shopping";
+  continueShoppingBtn.addEventListener("click", ()=>{
+    window.open("index.html", "_blank");
+  })
+
+  shoppingCartContainer?.appendChild(emtpyTitle);
+  shoppingCartContainer?.appendChild(continueShoppingBtn);
+
+  const sumAside = document.querySelector(".sumAside") as HTMLDivElement;
+  sumAside.className = ("sumAside__empty");
+}
+
+
+// Huvud funktion som sätter local storage och som styr summan i varukorgen
 const shoppingCartHtml = () => {
   
   localStorage.setItem("shoppingCartList", JSON.stringify(shoppingCartList));
@@ -118,7 +139,8 @@ const shoppingCartHtml = () => {
   
   const summaryOfValue = document.getElementById("summaryOfValue");
   let sum: number = 0;
-
+  
+  /* Loop för varukorg listan */
   for(let i = 0; i < shoppingCartList.length; i++){
 
     sum += shoppingCartList[i].price;
@@ -149,7 +171,6 @@ const shoppingCartHtml = () => {
     title.appendChild(price);
     shoppingCartContainer?.appendChild(productBox);
   };
-  
 };
 
 shoppingCartHtml()

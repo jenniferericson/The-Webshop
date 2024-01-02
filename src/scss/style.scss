@@ -33,7 +33,7 @@
     @include mixins.flex-justify;
   }
 
-  &--searchInput {
+  &--searchIcon {
     @include mixins.flex;
     margin-top:8px;
 
@@ -43,16 +43,17 @@
       margin-bottom: 10px;
     }
   }
+
+  &--searchInput {
+    border: none;
+    border-bottom: 2px solid v.$border-colour;
+    padding: 5px;
+    margin-bottom: 15px; 
+    font-size: v.$small-text; 
+    outline: none;
+  }
 }
 
-#searchInput {
-  border: none;
-  border-bottom: 2px solid v.$border-colour;
-  padding: 5px;
-  margin-bottom: 15px; 
-  font-size: v.$small-text; 
-  outline: none;
-}
 
 /* Main */
 .main {
@@ -96,26 +97,13 @@
  }
 }
 
-/* styling för produktsida */
+/* Styling för produktsidorna */
 #productsWContainer {
   @include mixins.productsContainer;
 }
 
 #productsMContainer {
   @include mixins.productsContainer;
-}
-
-.imgContainer {
-  height: 20rem;
-  width: 100%;
-  border: 1px solid v.$border-colour;
-  
-  &--img{
-      height: 100%;
-      width: 100%;
-      object-fit: scale-down;
-      padding: 1.5rem;
-    }
 }
 
 .productBox {
@@ -139,14 +127,14 @@
     margin-top: 1rem;
     font-size: v.$small-text;
   }
-
+  
   &--price{
     align-self: flex-start;
     margin-top: 10px;
     font-size: 18px;
     
   }
-
+  
   &--btn{
     position: absolute;
     display: none;
@@ -154,15 +142,27 @@
     padding: 0.5rem;
     border-radius: 20px;
     border: 1px solid v.$border-colour;
-  
+    
     &:hover{
       background-color: v.$border-colour;
       color: white;
     }
   }
-
+  
 }
 
+ .imgContainer {
+  height: 20rem;
+  width: 100%;
+  border: 1px solid v.$border-colour;
+  
+    &--img{
+      @include mixins.productImg;
+      padding: 1.5rem;
+    }
+  }
+
+//Styling för titlen på produktsidorna
 .pageTitle {
   display: flex;
   flex-direction: column;
@@ -183,7 +183,6 @@
 }
 
 /* Styling för kassasida */
-
 #shoppingCartContainer {
   display: flex;
   flex-direction: column;
@@ -192,9 +191,21 @@
 
   &--title {
     display: flex;
-    margin: 1rem;
+    margin: 2rem;
     font-size: 40px;
   }
+}
+
+// Styling för när varukorgen är tom
+.continueShoppingBtn {
+  border: 1px solid v.$border-colour;
+  padding: 10px;
+  margin-top: 1.5rem;
+
+   &:hover {
+     cursor: v.$click;
+     background-color: rgb(231, 231, 231); 
+   }
 }
 
 .shoppingCartBox {
@@ -233,6 +244,10 @@
   background-color: #f0f0f0;  
   box-sizing: border-box;
   margin: 30px;
+
+  &__empty {
+    display: none;
+  }
 
   &--Btn {
     display: flex;

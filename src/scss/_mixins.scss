@@ -27,3 +27,9 @@
     gap: 15px;
     margin: 0 1rem;
 }
+
+@mixin productImg {
+    height: 100%;
+    width: 100%;
+    object-fit: scale-down;
+}
