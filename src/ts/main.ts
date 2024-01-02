@@ -124,21 +124,28 @@ const shoppingCartHtml = () => {
     sum += shoppingCartList[i].price;
 
     const productBox = document.createElement("div");
+    const imgContainer = document.createElement("div");
     const img = document.createElement("img");
     const title = document.createElement("p");
     const price = document.createElement("p");
+
+    productBox.className = ("shoppingCartBox");
+    imgContainer.className = ("imgContainerSC")
+    img.className = ("imgContainerSC--img");
+    title.className = ("shoppingCartBox--title");
+    price.className = ("shoppingCartBox--price");
     
     img.src = shoppingCartList[i].image;
     title.innerHTML = shoppingCartList[i].title;
     price.innerHTML = shoppingCartList[i].price +" $".toString();
 
     if(summaryOfValue){
-    summaryOfValue.innerHTML = "Total sum: " + sum.toString() +"$";
-  }
-  
+      summaryOfValue.innerHTML = "Total sum: " + sum.toString() +"$";
+    }
+    
     productBox.appendChild(img);
     productBox.appendChild(title);
-    productBox.appendChild(price);
+    title.appendChild(price);
     shoppingCartContainer?.appendChild(productBox);
   };
   
