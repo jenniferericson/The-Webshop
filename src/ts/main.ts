@@ -7,6 +7,11 @@ import "./../scss/style.scss";
 let cartValue:number = 1;
 const cartValueTag = document.getElementById("cartValueTag") as HTMLElement;
 
+const storedCartValue = localStorage.getItem("cartValue");
+
+if (storedCartValue){
+  cartValue=JSON.parse(storedCartValue);
+}
 /* Hämta produkter på woman sidan*/
 const productsWContainer = document.getElementById("productsWContainer");
 
@@ -44,7 +49,9 @@ for (let i = 0; i < productsW.length; i++) {
     cartValueTag.innerHTML = "";
     cartValueTag.innerHTML = cartValue.toString();
     cartValue +=1;
+    //localStorage.setItem("cartValue", JSON.stringify(cartValue));
     shoppingCartHtml();
+    showShoppingCartValue();
   })
 }
 
@@ -86,9 +93,11 @@ for (let i = 0; i < productsM.length; i++) {
     cartValueTag.innerHTML = cartValue.toString();
     cartValue +=1;
     shoppingCartHtml();
+    showShoppingCartValue();
   })
   
 }
+
 
 /* Loop för varukorg lista */
 const shoppingCartContainer = document.getElementById("shoppingCartContainer");
@@ -127,5 +136,11 @@ const shoppingCartHtml = () => {
 shoppingCartHtml()
 
 
+const showShoppingCartValue = ()=> {
+  localStorage.setItem("cartValue", JSON.stringify(cartValue));
+    cartValueTag.innerHTML = "";
+    cartValueTag.innerHTML = cartValue.toString();
+    cartValue +=1;
+}
 
-
+showShoppingCartValue();
