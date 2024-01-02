@@ -129,3 +129,14 @@ shoppingCartHtml()
 
 
 
+//Klick funktion nedan för att navigera till woman/mens sidor från hero
+const imgContainerW = document.querySelector(".main--imgContainerW");
+const imgContainerM = document.querySelector(".main--imgContainerM");
+
+imgContainerW?.addEventListener("click", ()=>{
+  window.open("womens.html", "_blank");
+})
+
+imgContainerM?.addEventListener("click", ()=>{
+  window.open("mens.html", "_blank");
+})
