@@ -35,11 +35,12 @@
 
   &--searchInput {
     @include mixins.flex;
-    margin-top:25px;
+    margin-top:8px;
 
     svg {
       width: 30px;
       cursor: pointer;
+      margin-bottom: 10px;
     }
   }
 }
@@ -105,7 +106,6 @@
 }
 
 .imgContainer {
-  display: flex;
   height: 20rem;
   width: 100%;
   border: 1px solid v.$border-colour;
@@ -121,8 +121,9 @@
 .productBox {
   @include mixins.flex-justify;
   flex-direction: column;
-  //justify-content: stretch;
   margin-bottom: 20px;
+  width: 100%;
+  overflow:hidden;
   
   &:hover{
     opacity: 50%;
@@ -133,6 +134,7 @@
   }
   
   &--title{
+    white-space: nowrap;
     align-self: flex-start;
     margin-top: 1rem;
     font-size: v.$small-text;
@@ -188,7 +190,47 @@
   justify-content: center; 
   align-items: center;
 
-  .cartButton {
+  &--title {
+    display: flex;
+    margin: 1rem;
+    font-size: 40px;
+  }
+}
+
+.shoppingCartBox {
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+
+  &--title {
+    padding: 1rem;
+  }
+
+  &--price {
+    font-size: 20px;
+    margin: 10px 0;
+  }
+}
+
+.imgContainerSC {
+  height: 8rem;
+  width: 8rem;
+  border: 1px solid v.$border-colour;
+  padding: 10px;
+
+  &--img {
+      height: 100%;
+      width: 100%;
+      object-fit: scale-down;
+  }
+}
+
+.sumDiv {
+  border: black solid 1px;
+  margin: 500px;
+  padding: 20px;
+  
+  &--cartBtn {
     display: flex;
     background-color: black;
     color: white;
@@ -196,16 +238,5 @@
     cursor: pointer;
     padding: 5px;
   }
-  #sum-buttonDiv {
-    border: black solid 1px;
-    margin: 500px;
-    padding: 20px;
-   
-  }
 }
 
-#title-shoppingbag {
-  display: flex;
-  margin: 1rem;
-  font-size: 40px;
-}

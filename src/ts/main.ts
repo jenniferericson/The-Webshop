@@ -81,6 +81,7 @@ for (let i = 0; i < productsM.length; i++) {
   productsMContainer?.appendChild(productBox);
   
   addToCartBtn.addEventListener("click", ()=>{
+    shoppingCartList.push(productsM[i]);
     cartValueTag.innerHTML = "";
     cartValueTag.innerHTML = cartValue.toString();
     cartValue +=1;
@@ -108,17 +109,25 @@ const shoppingCartHtml = () => {
   
   for(let i = 0; i < shoppingCartList.length; i++){
     const productBox = document.createElement("div");
+    const imgContainer = document.createElement("div");
     const img = document.createElement("img");
     const title = document.createElement("p");
     const price = document.createElement("p");
+
+    productBox.className = ("shoppingCartBox");
+    imgContainer.className = ("imgContainerSC")
+    img.className = ("imgContainerSC--img");
+    title.className = ("shoppingCartBox--title");
+    price.className = ("shoppingCartBox--price");
     
     img.src = shoppingCartList[i].image;
     title.innerHTML = shoppingCartList[i].title;
     price.innerHTML = shoppingCartList[i].price +" $".toString();
     
-    productBox.appendChild(img);
+    productBox.appendChild(imgContainer);
+    imgContainer.appendChild(img);
     productBox.appendChild(title);
-    productBox.appendChild(price);
+    title.appendChild(price);
     shoppingCartContainer?.appendChild(productBox);
   };
 };
