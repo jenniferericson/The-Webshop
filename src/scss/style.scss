@@ -190,6 +190,39 @@
   justify-content: center; 
   align-items: center;
 
+  &--title {
+    display: flex;
+    margin: 1rem;
+    font-size: 40px;
+  }
+}
+
+.shoppingCartBox {
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+
+  &--title {
+    padding: 1rem;
+  }
+
+  &--price {
+    font-size: 20px;
+    margin: 10px 0;
+  }
+}
+
+.imgContainerSC {
+  height: 8rem;
+  width: 8rem;
+  border: 1px solid v.$border-colour;
+  padding: 10px;
+
+  &--img {
+      height: 100%;
+      width: 100%;
+      object-fit: scale-down;
+  }
 }
 
 /* Styling för aside */
