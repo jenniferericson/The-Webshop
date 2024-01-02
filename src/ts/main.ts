@@ -107,7 +107,13 @@ const shoppingCartHtml = () => {
   
   console.log(shoppingCartList);
   
+  const summaryOfValue = document.getElementById("summaryOfValue");
+  let sum: number = 0;
+
   for(let i = 0; i < shoppingCartList.length; i++){
+
+    sum += shoppingCartList[i].price;
+
     const productBox = document.createElement("div");
     const img = document.createElement("img");
     const title = document.createElement("p");
@@ -116,12 +122,17 @@ const shoppingCartHtml = () => {
     img.src = shoppingCartList[i].image;
     title.innerHTML = shoppingCartList[i].title;
     price.innerHTML = shoppingCartList[i].price +" $".toString();
-    
+
+    if(summaryOfValue){
+    summaryOfValue.innerHTML = "Total sum: " + sum.toString() +"$";
+  }
+  
     productBox.appendChild(img);
     productBox.appendChild(title);
     productBox.appendChild(price);
     shoppingCartContainer?.appendChild(productBox);
   };
+  
 };
 
 shoppingCartHtml()
