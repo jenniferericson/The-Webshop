@@ -81,6 +81,7 @@ for (let i = 0; i < productsM.length; i++) {
   productsMContainer?.appendChild(productBox);
   
   addToCartBtn.addEventListener("click", ()=>{
+    shoppingCartList.push(productsM[i]);
     cartValueTag.innerHTML = "";
     cartValueTag.innerHTML = cartValue.toString();
     cartValue +=1;
