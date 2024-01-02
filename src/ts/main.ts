@@ -4,7 +4,7 @@ import "./../scss/style.scss";
 
 
 /* Shoppingcart ikonen ändras när man lägger till produkter*/
-let cartValue:number = 1;
+let cartValue:number = 0;
 const cartValueTag = document.getElementById("cartValueTag") as HTMLElement;
 
 const storedCartValue = localStorage.getItem("cartValue");
@@ -47,10 +47,7 @@ for (let i = 0; i < productsW.length; i++) {
   
   addToCartBtn.addEventListener("click", ()=>{
     shoppingCartList.push(productsW[i]);
-    cartValueTag.innerHTML = "";
-    cartValueTag.innerHTML = cartValue.toString();
-    cartValue +=1;
-    //localStorage.setItem("cartValue", JSON.stringify(cartValue));
+    cartValue ++;
     shoppingCartHtml();
     showShoppingCartValue();
   })
@@ -90,9 +87,7 @@ for (let i = 0; i < productsM.length; i++) {
   
   addToCartBtn.addEventListener("click", ()=>{
     shoppingCartList.push(productsM[i]);
-    cartValueTag.innerHTML = "";
-    cartValueTag.innerHTML = cartValue.toString();
-    cartValue +=1;
+    cartValue++;
     shoppingCartHtml();
     showShoppingCartValue();
   })
@@ -108,27 +103,7 @@ const valueFromLs = localStorage.getItem("shoppingCartList");
 
 if (valueFromLs) {
   shoppingCartList = JSON.parse(valueFromLs);
-}else {
-  // Innehåll som visas när varukorgen är tom
-  const emtpyTitle = document.createElement("h3");
-  const continueShoppingBtn = document.createElement("btn");
-
-  emtpyTitle.className = ("emptyTitle");
-  continueShoppingBtn.className = ("continueShoppingBtn");
-
-  emtpyTitle.innerHTML = "Your shopping bag is empty!";
-  continueShoppingBtn.innerHTML = "Continue shopping";
-  continueShoppingBtn.addEventListener("click", ()=>{
-    window.open("index.html", "_blank");
-  })
-
-  shoppingCartContainer?.appendChild(emtpyTitle);
-  shoppingCartContainer?.appendChild(continueShoppingBtn);
-
-  const sumAside = document.querySelector(".sumAside") as HTMLDivElement;
-  sumAside.className = ("sumAside__empty");
 }
-
 
 // Huvud funktion som sätter local storage och som styr summan i varukorgen
 const shoppingCartHtml = () => {
@@ -194,6 +169,26 @@ const showShoppingCartValue = ()=> {
     cartValueTag.innerHTML = cartValue.toString();
 }
 
-showShoppingCartValue();
+if(cartValue == 0){
+  // Innehåll som visas när varukorgen är tom
+  const emtpyTitle = document.createElement("h3");
+  const continueShoppingBtn = document.createElement("btn");
 
+  emtpyTitle.className = ("emptyTitle");
+  continueShoppingBtn.className = ("continueShoppingBtn");
+
+  emtpyTitle.innerHTML = "Your shopping bag is empty!";
+  continueShoppingBtn.innerHTML = "Continue shopping";
+  continueShoppingBtn.addEventListener("click", ()=>{
+    window.open("index.html", "_blank");
+  })
+
+  shoppingCartContainer?.appendChild(emtpyTitle);
+  shoppingCartContainer?.appendChild(continueShoppingBtn);
+
+  const sumAside = document.querySelector(".sumAside") as HTMLDivElement;
+  sumAside.className = ("sumAside__empty");
+}
+
+showShoppingCartValue();
 
