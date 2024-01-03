@@ -102,10 +102,10 @@ for (let i = 0; i < productsM.length; i++) {
     cartValue++;
     shoppingCartHtml();
     showShoppingCartValue();
-    checkoutHTML();
   })
-  
-}
+};
+    
+
 
 // Skapande av varukorg lista och local storage getItem
 const shoppingCartContainer = document.getElementById("shoppingCartContainer");
