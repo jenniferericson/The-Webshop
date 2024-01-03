@@ -195,6 +195,10 @@
     margin: 2rem;
     font-size: 40px;
   }
+
+  &--removeBtn {
+  background-color: black;
+  }
 }
 
 // Styling för när varukorgen är tom
@@ -261,6 +265,8 @@
     padding: 10px;
   }
 }
+
+
 
 /* Styling för kassasidan */
 

@@ -141,6 +141,7 @@ const shoppingCartHtml = () => {
     const qtyContainer = document.createElement("div");
     const plusBtn = document.createElement("button")
     const minusBtn = document.createElement("button")
+    const removeBtn = document.createElement("button");
     const qty = document.createElement("p");
 
     productBox.className = ("shoppingCartBox");
@@ -148,13 +149,25 @@ const shoppingCartHtml = () => {
     img.className = ("imgContainerSC--img");
     title.className = ("shoppingCartBox--title");
     price.className = ("shoppingCartBox--price");
+    removeBtn.className = ("shoppingCartBox--removeBtn");
     
     img.src = shoppingCartList[i].image;
     title.innerHTML = shoppingCartList[i].title;
     price.innerHTML = shoppingCartList[i].price +" $".toString();
     plusBtn.innerHTML = "+";
     minusBtn.innerHTML = "-";
+    removeBtn.innerHTML ="Remove";
     qty.innerHTML = shoppingCartList[i].qty.toString();
+
+    removeBtn.addEventListener("click", () => {
+      shoppingCartList.splice(i,1);
+      console.log(shoppingCartList);
+      productBox.innerHTML = "";
+      cartValue=0;
+      cartValueTag.innerHTML = "";
+
+      shoppingCartHtml();
+    });
 
     if(summaryOfValue){
       summaryOfValue.innerHTML = "";
@@ -169,6 +182,7 @@ const shoppingCartHtml = () => {
     qtyContainer.appendChild(qty);
     qtyContainer.appendChild(plusBtn);
     title.appendChild(qtyContainer);
+    qtyContainer.appendChild(removeBtn);
     shoppingCartContainer?.appendChild(productBox);
 
   };
