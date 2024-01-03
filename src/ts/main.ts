@@ -37,6 +37,8 @@ for (let i = 0; i < productsW.length; i++) {
   title.innerHTML = productsW[i].title;
   price.innerHTML = productsW[i].price +" $".toString();
   addToCartBtn.innerHTML = "Add to cart";
+  productsW[i].qty = 0;
+  console.log(productsW[i]);
   
   productBox.appendChild(imgContainer);
   imgContainer.appendChild(img);
@@ -77,6 +79,7 @@ for (let i = 0; i < productsM.length; i++) {
   title.innerHTML = productsM[i].title;
   price.innerHTML = productsM[i].price +" $".toString();
   addToCartBtn.innerHTML = "Add to cart";
+  productsM[i].qty = 0;
   
   productBox.appendChild(imgContainer);
   imgContainer.appendChild(img);
