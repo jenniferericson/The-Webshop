@@ -245,6 +245,12 @@ imgContainerM?.addEventListener("click", ()=>{
 
   const checkOutBtn = document.getElementById("checkOutBtn");
 
-  checkOutBtn?.addEventListener("click", ()=>{
+  checkOutBtn?.addEventListener("click", ()=> {
     window.open("checkOut.html", "_self");
   })
+
+  const purchaseBtn = document.querySelector(".checkOut--purchaseBtn");
+
+  purchaseBtn?.addEventListener("click", () => {
+    alert("Ditt köp har genomförts");
+  });
