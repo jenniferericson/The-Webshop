@@ -155,25 +155,32 @@ const shoppingCartHtml = () => {
     title.innerHTML = shoppingCartList[i].title;
     price.innerHTML = shoppingCartList[i].price +" $".toString();
     plusBtn.innerHTML = "+";
+    qty.innerHTML = shoppingCartList[i].qty.toString();
     minusBtn.innerHTML = "-";
     removeBtn.innerHTML ="Remove";
-    qty.innerHTML = shoppingCartList[i].qty.toString();
 
     removeBtn.addEventListener("click", () => {
-      shoppingCartList.splice(i,1);
+      shoppingCartList.splice(i);
       console.log(shoppingCartList);
       productBox.innerHTML = "";
       cartValue=0;
       cartValueTag.innerHTML = "";
+      sum = 0;
 
+      checkSum()
       shoppingCartHtml();
+      showShoppingCartValue();
     });
 
+    const checkSum = () => {
     if(summaryOfValue){
       summaryOfValue.innerHTML = "";
       summaryOfValue.innerHTML = "Sum: " + sum.toString() +"$";
-    }
-    
+     }
+    };
+
+    checkSum();
+
     imgContainer.appendChild(img);
     productBox.appendChild(imgContainer)
     productBox.appendChild(title);
@@ -203,7 +210,7 @@ imgContainerM?.addEventListener("click", ()=>{
 })
 
 //funktion för att visualisera val av betalning
-  const paymentChoice = document.getElementById("checkOut--paymentChoice");
+  const paymentChoice = document.getElementById("paymentChoice");
   const card = document.getElementById("card");
   const swish = document.getElementById("swish");
   
@@ -286,34 +293,35 @@ imgContainerM?.addEventListener("click", ()=>{
 
 
 
-  //Funktion för checkOutLoop
-  const checkoutHTML =()=>{
-  const orderSummaryContainer = document.getElementById("orderSummaryContainer");
+ //Funktion för checkOutLoop
+ const checkoutHTML =()=>{
+ 
+const orderSummaryContainer = document.getElementById("orderSummaryContainer");
 
-  for (let i=0; i< shoppingCartList.length; i++){
+for (let i=0; i< shoppingCartList.length; i++){
 
-    const productBox = document.createElement("div");
-    const imgContainer = document.createElement("div");
-    const img = document.createElement("img");
-    const title = document.createElement("p");
-    const price = document.createElement("p");
+  const productBox = document.createElement("div");
+  const imgContainer = document.createElement("div");
+  const img = document.createElement("img");
+  const title = document.createElement("p");
+  const price = document.createElement("p");
 
-    productBox.className = ("checkout--productBox");
-    imgContainer.className = ("checkOut--imgContainer")
-    img.className = ("checkOut--img");
-    title.className = ("checkout--title");
-    price.className = ("checkout--price");
-    
-    img.src = shoppingCartList[i].image;
-    title.innerHTML = shoppingCartList[i].title;
-    price.innerHTML = shoppingCartList[i].price +" $".toString();
-    
-    imgContainer.appendChild(img);
-    productBox.appendChild(imgContainer)
-    productBox.appendChild(title);
-    title.appendChild(price);
-    orderSummaryContainer?.appendChild(productBox);
-  }
+  productBox.className = ("checkOut--productBox");
+  imgContainer.className = ("checkOut--imgContainer")
+  img.className = ("checkOut--img");
+  title.className = ("checkOut--title");
+  price.className = ("checkOut--price");
+
+  img.src = shoppingCartList[i].image;
+  title.innerHTML = shoppingCartList[i].title;
+  price.innerHTML = shoppingCartList[i].price +" $".toString();
+
+  imgContainer.appendChild(img);
+  productBox.appendChild(imgContainer)
+  productBox.appendChild(title);
+  title.appendChild(price);
+  orderSummaryContainer?.appendChild(productBox);
+}
 
 }
 checkoutHTML();

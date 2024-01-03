@@ -8,10 +8,6 @@
       justify-content: center;
       //background-color: #222;
     
-      &--orderSummary{
-        display: none;
-      }
-    
       &--container{
         display: flex;
         flex-direction: column;
@@ -19,14 +15,34 @@
         width: 80%;
         height: 30rem;
         border: 1px solid black;
+      }
+    }      
+      .orderSummary{
+        display: none;
+      }
     
-        .checkOut--shippingInformation{
+    
+        .shippingInformation{
           display: flex;
           align-items: center;
           flex-direction: column;
           height: 100%;
+
+          //style för radio buttons
+          &--supplier{
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+            margin: 1rem;
+            padding: 1rem;
+            //width:10rem;
+            //height: 5rem;
+            border: 1px solid black;
+            border-radius: 20px;
+          }
+        }    
           
-          .checkOut--accountInformation{
+          .accountInformation{
             display: flex;
             align-items: center;
             justify-content: center;
@@ -38,29 +54,18 @@
             border: 1px solid black;
             border-radius: 20px;
     
-            .checkOut--inputAcount{
+            &--inputAcount{
               width: 10rem;
               border: 1px solid black;
               margin: 0.5rem;
             }
           }
-          //style för radio buttons
-          .checkout--supplier{
-            display: flex;
-            align-items: flex-start;
-            flex-direction: column;
-            margin: 1rem;
-            padding: 1rem;
-            //width:10rem;
-            //height: 5rem;
-            border: 1px solid black;
-            border-radius: 20px;
-            }
+        
           
-            .checkOut--payMethod{
+            .payMethod{
               display: flex;
     
-              .checkOut--payMethodBox{
+              §--box{
                 width: 50%;
                 height: 100%;
                 display: flex;
@@ -73,14 +78,14 @@
               }
             }
     
-            #checkOut--paymentChoice{
+            #paymentChoice{
               display: flex;
               align-items:center;
               justify-content: center;
               flex-direction: column;
               border: 1px solid black;
               border-radius: 20px;
-              
+            }  
     
               .cardNumber{
                 width: 8rem;
@@ -91,36 +96,33 @@
               display: flex;
               align-items:center;
               justify-content: center;
-    
+              }
               .monthCvc{
                 width: 3rem;
                 margin: 1rem;
               }
-              }
-            }
-        }
-      }
-    }
-    }
+              
+}
     
     
-    /* style för desktop */
-    @media (min-width: 885px ){
-      .checkOut{
-        height: 90vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        //background-color: #222;
+    
+/* style för desktop */
+@media (min-width: 885px ){
+  .checkOut{
+      height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      //background-color: #222;
       
         &--container{
-          height: 25rem;
+          height: 80vh;
           width: 40rem;
           display: flex;
           border: 1px solid black;
-
-      
-          .checkOut--shippingInformation{
+        }
+  }
+    .shippingInformation{
             height: 100%;
             width: 50%;
             border-right: 1px solid black;
@@ -129,26 +131,8 @@
             align-items: center;
             //justify-content: center;
             flex-direction: column;
-    
-            .checkOut--accountInformation{
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              flex-direction: column;
-              margin: 1rem;
-              padding: 1rem;
-              //width: 10rem;
-              //height: 5rem;
-              border: 1px solid black;
-              border-radius: 20px;
-      
-              .checkOut--inputAcount{
-                width: 10rem;
-                border: 1px solid black;
-                margin: 0.5rem;
-              }
-            }
-            .checkout--supplier{
+
+        &--supplier{
               display: flex;
               align-items: flex-start;
               flex-direction: column;
@@ -163,13 +147,34 @@
                 width: 1rem;
                 height: 1rem;
               }
+        }
+    }
+
+            .accountInformation{
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-direction: column;
+              margin: 1rem;
+              padding: 1rem;
+              //width: 10rem;
+              //height: 5rem;
+              border: 1px solid black;
+              border-radius: 20px;
+
+              &--inputAcount{
+                width: 10rem;
+                border: 1px solid black;
+                margin: 0.5rem;
               }
+            }
 
 
-              .checkOut--payMethod{
+
+              .payMethod{
                 display: flex;
-      
-                .checkOut--payMethodBox{
+
+                &--box{
                   width: 50%;
                   height: 100%;
                   display: flex;
@@ -181,15 +186,16 @@
                   //margin: 1rem;
                 }
               }
+              
       
-              #checkOut--paymentChoice{
+              #paymentChoice{
                 display: flex;
                 align-items:center;
                 justify-content: center;
                 flex-direction: column;
                 border: 1px solid black;
                 border-radius: 20px;
-                
+              } 
       
                 .cardNumber{
                   width: 8rem;
@@ -200,17 +206,18 @@
                 display: flex;
                 align-items:center;
                 justify-content: center;
-      
+                }
+
                 .monthCvc{
                   width: 3rem;
                   margin: 1rem;
                 }
-                }
-              }
-    
-          }
+                
       
-          .checkOut--orderSummary{
+    
+      
+      
+          .orderSummary{
             width: 50%;
             height: 100%;
             background-color: white;
@@ -220,28 +227,24 @@
             align-items: center;
             flex-direction: column;
           }
-          #orderSummaryContainer{
-            height: 25rem;
-            //border: 1px solid black;
-            overflow: auto;
-
-            &--footer{
-              width: 100%;
-              height: 100%;
-              padding: 1rem;
-              //border: 1px solid black;
-              display: flex;
-              justify-content: end;
-              align-items: end;
-              flex-direction: column;
-              
-            }
-
-          }
-        }
-      }
+        
     
-    }
+      #orderSummaryContainer{
+        height: 20rem;
+        overflow: auto;
+        margin-top: 10px;
+
+        &--footer{
+          width: 100%;
+          padding: 1rem;
+          border-top: 1px solid black;
+          display: flex;
+          justify-content: end;
+          align-items: end;
+          flex-direction: column;
+          
+        }
+      }  
 
     .checkOut--imgContainer {
       height: 3rem;
@@ -256,18 +259,19 @@
       }
     }
 
-    .checkout--productBox{
+    .checkOut--productBox{
       display: flex;
       width: 100%;
       padding: 1rem;
     
-      .checkout--title {
-        padding: 1rem;
+      .checkOut--title {
+       padding: 10px;
         font-size: 15px;
       }
     
-      .checkout--price {
+      .checkOut--price {
         font-size: 15px;
         margin: 10px 0;
       }
     }
+}
