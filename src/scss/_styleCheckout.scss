@@ -118,6 +118,7 @@
           width: 40rem;
           display: flex;
           border: 1px solid black;
+
       
           .checkOut--shippingInformation{
             height: 100%;
@@ -215,9 +216,57 @@
             background-color: white;
     
             display: flex;
-            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+          }
+          #orderSummaryContainer{
+            height: 20rem;
+            //border: 1px solid black;
+            overflow: auto;
+
+            &--footer{
+              width: 100%;
+              height: 100%;
+              padding: 1rem;
+              //border: 1px solid black;
+              display: flex;
+              justify-content: end;
+              align-items: end;
+              flex-direction: column;
+              
+            }
+
           }
         }
       }
     
+    }
+
+    .checkOut--imgContainer {
+      height: 3rem;
+      width: 3rem;
+      border: 1px solid black;
+      padding: 10px;
+    
+      .checkOut--img {
+          height: 100%;
+          width: 100%;
+          object-fit: scale-down;
+      }
+    }
+
+    .checkout--productBox{
+      display: flex;
+      width: 100%;
+      padding: 1rem;
+    
+      .checkout--title {
+        padding: 1rem;
+        font-size: 15px;
+      }
+    
+      .checkout--price {
+        font-size: 15px;
+        margin: 10px 0;
+      }
     }
