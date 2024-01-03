@@ -224,5 +224,12 @@ imgContainerM?.addEventListener("click", ()=>{
       cartValueTag.innerHTML = "";
       cartValueTag.innerHTML = cartValue.toString();
   }
+
   
   showShoppingCartValue();
+
+  const checkOutBtn = document.getElementById("checkOutBtn");
+
+  checkOutBtn?.addEventListener("click", ()=>{
+    window.open("checkOut.html", "_self");
+  })
