@@ -5,8 +5,15 @@ import "./../scss/style.scss";
 
 /* Shoppingcart ikonen ändras när man lägger till produkter*/
 let cartValue:number = 0;
+let summaryOfItems:number = 0;
+const summaryOfItemsTag = document.getElementById("summaryOfItemsTag");
 const cartValueTag = document.getElementById("cartValueTag") as HTMLElement;
 const storedCartValue = localStorage.getItem("cartValue");
+const storedSummaryOfItems = localStorage.getItem("summaryOfItems");
+
+if(storedSummaryOfItems){
+  summaryOfItems=JSON.parse(storedSummaryOfItems);
+}
 
 if (storedCartValue){
   cartValue=JSON.parse(storedCartValue);
@@ -49,8 +56,10 @@ for (let i = 0; i < productsW.length; i++) {
   addToCartBtn.addEventListener("click", ()=>{
     shoppingCartList.push(productsW[i]);
     cartValue ++;
+    summaryOfItems++;
     shoppingCartHtml();
     showShoppingCartValue();
+    checkoutHTML();
   })
 }
 
@@ -90,8 +99,10 @@ for (let i = 0; i < productsM.length; i++) {
   addToCartBtn.addEventListener("click", ()=>{
     shoppingCartList.push(productsM[i]);
     cartValue++;
+    summaryOfItems++;
     shoppingCartHtml();
     showShoppingCartValue();
+    checkoutHTML();
   })
   
 }
@@ -250,7 +261,12 @@ imgContainerM?.addEventListener("click", ()=>{
 
   //Funktion för checkOutLoop
   const checkoutHTML =()=>{
-    
+    localStorage.setItem("summaryOfItems", JSON.stringify(summaryOfItems));
+
+    if(summaryOfItemsTag){
+      summaryOfItemsTag.innerHTML = "";
+      summaryOfItemsTag.innerHTML = summaryOfItems.toString();
+  }
   const orderSummaryContainer = document.getElementById("orderSummaryContainer");
 
   for (let i=0; i< shoppingCartList.length; i++){
@@ -286,6 +302,3 @@ const checkOutBtn = document.getElementById("checkOutBtn");
     window.open("checkOut.html", "_self");
     //checkoutHTML();
   });
-
-
-  
