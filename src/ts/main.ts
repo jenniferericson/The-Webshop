@@ -168,12 +168,61 @@ imgContainerM?.addEventListener("click", ()=>{
 })
 
 
-const showShoppingCartValue = ()=> {
-  localStorage.setItem("cartValue", JSON.stringify(cartValue));
-    cartValueTag.innerHTML = "";
-    cartValueTag.innerHTML = cartValue.toString();
-}
-
-showShoppingCartValue();
 
 
+  //funktion för att visualisera val av betalning
+  const paymentChoice = document.getElementById("checkOut--paymentChoice");
+  const card = document.getElementById("card");
+  const swish = document.getElementById("swish");
+  
+  
+  card?.addEventListener("click", ()=>{
+    if(paymentChoice){
+      paymentChoice.innerHTML = "";
+    }
+    const cardNumberDiv = document.createElement("div");
+    const cardNumberInput = document.createElement("input");
+    const cardExtraNumberDiv = document.createElement("div");
+    const cardExpireInput = document.createElement("input");
+    const cardCvc = document.createElement("input");
+  
+    cardNumberInput.placeholder = "xxxx xxxx xxxx xxxx";
+    cardExpireInput.placeholder = "M/Y";
+    cardCvc.placeholder = "CVC";
+  
+    cardNumberInput.className = ("cardNumber");
+    cardExtraNumberDiv.className = ("monthCvcDiv");
+    cardExpireInput.className = ("monthCvc");
+    cardCvc.className = ("monthCvc");
+  
+  
+    paymentChoice?.appendChild(cardNumberDiv);
+    cardNumberDiv.appendChild(cardNumberInput);
+    paymentChoice?.appendChild(cardExtraNumberDiv);
+    cardExtraNumberDiv.appendChild(cardExpireInput);
+    cardExtraNumberDiv.appendChild(cardCvc);
+  });
+  
+  swish?.addEventListener("click", ()=>{
+    if(paymentChoice){
+      paymentChoice.innerHTML = "";
+    }
+  
+    const cardNumberDiv = document.createElement("div");
+    const cardNumberInput = document.createElement("input");
+  
+    cardNumberInput.placeholder = "+46 ";
+    cardNumberInput.className = ("cardNumber");
+  
+    paymentChoice?.appendChild(cardNumberDiv);
+    cardNumberDiv.appendChild(cardNumberInput);
+  });
+
+
+  const showShoppingCartValue = ()=> {
+    localStorage.setItem("cartValue", JSON.stringify(cartValue));
+      cartValueTag.innerHTML = "";
+      cartValueTag.innerHTML = cartValue.toString();
+  }
+  
+  showShoppingCartValue();
