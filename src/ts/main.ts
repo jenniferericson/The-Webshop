@@ -5,8 +5,8 @@ import "./../scss/style.scss";
 /* Shoppingcart ikonen ändras när man lägger till produkter*/
 let cartValue:number = 0;
 const cartValueTag = document.getElementById("cartValueTag") as HTMLElement;
-
 const storedCartValue = localStorage.getItem("cartValue");
+
 
 if (storedCartValue){
   cartValue=JSON.parse(storedCartValue);
@@ -55,6 +55,7 @@ for (let i = 0; i < productsW.length; i++) {
     cartValue ++;
     shoppingCartHtml();
     showShoppingCartValue();
+    checkoutHTML();
   })
 }
 
@@ -101,8 +102,10 @@ for (let i = 0; i < productsM.length; i++) {
     cartValue++;
     shoppingCartHtml();
     showShoppingCartValue();
-  });
-};
+    checkoutHTML();
+  })
+  
+}
 
 // Skapande av varukorg lista och local storage getItem
 const shoppingCartContainer = document.getElementById("shoppingCartContainer");
@@ -235,11 +238,15 @@ imgContainerM?.addEventListener("click", ()=>{
 
   const showShoppingCartValue = ()=> {
     localStorage.setItem("cartValue", JSON.stringify(cartValue));
+    if (cartValueTag){
       cartValueTag.innerHTML = "";
       cartValueTag.innerHTML = cartValue.toString();
+    }
   }
   
   showShoppingCartValue();
+
+
 
   // Innehåll som visas när varukorgen är tom
   if(cartValue == 0){
@@ -261,15 +268,50 @@ imgContainerM?.addEventListener("click", ()=>{
     const sumAside = document.querySelector(".sumAside") as HTMLDivElement;
     sumAside.className = ("sumAside__empty");
   }
- // Navigering till kassa
-  const checkOutBtn = document.getElementById("checkOutBtn");
 
-  checkOutBtn?.addEventListener("click", ()=> {
+
+
+
+  //Funktion för checkOutLoop
+  const checkoutHTML =()=>{
+  const orderSummaryContainer = document.getElementById("orderSummaryContainer");
+
+  for (let i=0; i< shoppingCartList.length; i++){
+
+    const productBox = document.createElement("div");
+    const imgContainer = document.createElement("div");
+    const img = document.createElement("img");
+    const title = document.createElement("p");
+    const price = document.createElement("p");
+
+    productBox.className = ("checkout--productBox");
+    imgContainer.className = ("checkOut--imgContainer")
+    img.className = ("checkOut--img");
+    title.className = ("checkout--title");
+    price.className = ("checkout--price");
+    
+    img.src = shoppingCartList[i].image;
+    title.innerHTML = shoppingCartList[i].title;
+    price.innerHTML = shoppingCartList[i].price +" $".toString();
+    
+    imgContainer.appendChild(img);
+    productBox.appendChild(imgContainer)
+    productBox.appendChild(title);
+    title.appendChild(price);
+    orderSummaryContainer?.appendChild(productBox);
+  }
+
+}
+checkoutHTML();
+
+const checkOutBtn = document.getElementById("checkOutBtn");
+  checkOutBtn?.addEventListener("click", ()=>{
     window.open("checkOut.html", "_self");
+    //checkoutHTML();
   })
 
   const purchaseBtn = document.querySelector(".checkOut--purchaseBtn");
 
   purchaseBtn?.addEventListener("click", () => {
     alert("Ditt köp har genomförts");
-  });
+  });;
