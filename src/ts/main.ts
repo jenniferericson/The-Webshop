@@ -4,7 +4,7 @@ import "./../scss/style.scss";
 
 
 /* Shoppingcart ikonen ändras när man lägger till produkter*/
-let cartValue:number = 1;
+let cartValue:number = 0;
 const cartValueTag = document.getElementById("cartValueTag") as HTMLElement;
 
 const storedCartValue = localStorage.getItem("cartValue");
@@ -160,11 +160,11 @@ const imgContainerW = document.querySelector(".main--imgContainerW");
 const imgContainerM = document.querySelector(".main--imgContainerM");
 
 imgContainerW?.addEventListener("click", ()=>{
-  window.open("womens.html", "_blank");
+  window.open("womens.html", "_self");
 })
 
 imgContainerM?.addEventListener("click", ()=>{
-  window.open("mens.html", "_blank");
+  window.open("mens.html", "_self");
 })
 
 
