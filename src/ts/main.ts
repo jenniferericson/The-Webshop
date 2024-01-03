@@ -6,7 +6,6 @@ import "./../scss/style.scss";
 /* Shoppingcart ikonen ändras när man lägger till produkter*/
 let cartValue:number = 0;
 const cartValueTag = document.getElementById("cartValueTag") as HTMLElement;
-
 const storedCartValue = localStorage.getItem("cartValue");
 
 if (storedCartValue){
@@ -214,13 +213,7 @@ imgContainerM?.addEventListener("click", ()=>{
     cardNumberDiv.appendChild(cardNumberInput);
   });
 
-  const showShoppingCartValue = ()=> {
-    localStorage.setItem("cartValue", JSON.stringify(cartValue));
-      cartValueTag.innerHTML = "";
-      cartValueTag.innerHTML = cartValue.toString();
-  }
   
-  showShoppingCartValue();
 
   if(cartValue == 0){
     // Innehåll som visas när varukorgen är tom
@@ -243,8 +236,51 @@ imgContainerM?.addEventListener("click", ()=>{
     sumAside.className = ("sumAside__empty");
   }
 
-  const checkOutBtn = document.getElementById("checkOutBtn");
+  const showShoppingCartValue = ()=> {
+    localStorage.setItem("cartValue", JSON.stringify(cartValue));
+      cartValueTag.innerHTML = "";
+      cartValueTag.innerHTML = cartValue.toString();
+  }
+  
+  showShoppingCartValue();
 
+
+  //Funktion för checkOutLoop
+/*   const checkoutHTML =()=>{
+    
+  const orderSummaryContainer = document.getElementById("orderSummaryContainer");
+
+  for (let i=0; i< shoppingCartList.length; i++){
+
+    const productBox = document.createElement("div");
+    const imgContainer = document.createElement("div");
+    const img = document.createElement("img");
+    const title = document.createElement("p");
+    const price = document.createElement("p");
+
+    productBox.className = ("checkout--productBox");
+    imgContainer.className = ("checkOut--imgContainer")
+    img.className = ("checkOut--img");
+    title.className = ("checkout--title");
+    price.className = ("checkout--price");
+    
+    img.src = shoppingCartList[i].image;
+    title.innerHTML = shoppingCartList[i].title;
+    price.innerHTML = shoppingCartList[i].price +" $".toString();
+    
+    imgContainer.appendChild(img);
+    productBox.appendChild(imgContainer)
+    productBox.appendChild(title);
+    title.appendChild(price);
+    orderSummaryContainer?.appendChild(productBox);
+  }
+
+}
+
+const checkOutBtn = document.getElementById("checkOutBtn");
   checkOutBtn?.addEventListener("click", ()=>{
     window.open("checkOut.html", "_self");
-  })
+    //checkoutHTML();
+  });
+
+  checkoutHTML(); */
