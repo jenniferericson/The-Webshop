@@ -129,7 +129,7 @@ const shoppingCartHtml = () => {
   /* Loop för varukorg listan */
   for(let i = 0; i < shoppingCartList.length; i++){
     
-    sum += shoppingCartList[i].price;
+    sum += shoppingCartList[i].price * shoppingCartList[i].qty;
     
     console.log(shoppingCartList[i]);
 
