@@ -2,7 +2,6 @@ import { IProduct } from "../models/IProduct";
 import { getMProducts, getWProducts } from "../services/productService";
 import "./../scss/style.scss";
 
-
 /* Shoppingcart ikonen ändras när man lägger till produkter*/
 let cartValue:number = 0;
 const cartValueTag = document.getElementById("cartValueTag") as HTMLElement;
@@ -38,7 +37,6 @@ for (let i = 0; i < productsW.length; i++) {
   price.innerHTML = productsW[i].price +" $".toString();
   addToCartBtn.innerHTML = "Add to cart";
   productsW[i].qty = 0;
-  console.log(productsW[i]);
   
   productBox.appendChild(imgContainer);
   imgContainer.appendChild(img);
@@ -48,7 +46,12 @@ for (let i = 0; i < productsW.length; i++) {
   productsWContainer?.appendChild(productBox);
   
   addToCartBtn.addEventListener("click", ()=>{
-    shoppingCartList.push(productsW[i]);
+    if(shoppingCartList.includes(productsW[i])) {
+      productsW[i].qty++;
+    }else{
+      productsW[i].qty = 1;
+      shoppingCartList.push(productsW[i]);
+    } 
     cartValue ++;
     shoppingCartHtml();
     showShoppingCartValue();
@@ -89,13 +92,17 @@ for (let i = 0; i < productsM.length; i++) {
   productsMContainer?.appendChild(productBox);
   
   addToCartBtn.addEventListener("click", ()=>{
-    shoppingCartList.push(productsM[i]);
+    if(shoppingCartList.includes(productsM[i])) {
+      productsM[i].qty++;
+    }else{
+      productsM[i].qty = 1;
+      shoppingCartList.push(productsM[i]);
+    }
     cartValue++;
     shoppingCartHtml();
     showShoppingCartValue();
-  })
-  
-}
+  });
+};
 
 // Skapande av varukorg lista och local storage getItem
 const shoppingCartContainer = document.getElementById("shoppingCartContainer");
@@ -110,24 +117,28 @@ if (valueFromLs) {
 
 // Huvud funktion som sätter local storage och som styr summan i varukorgen
 const shoppingCartHtml = () => {
-  
+
   localStorage.setItem("shoppingCartList", JSON.stringify(shoppingCartList));
-  
-  console.log(shoppingCartList);
-  
+
   const summaryOfValue = document.getElementById("summaryOfValue");
   let sum: number = 0;
   
   /* Loop för varukorg listan */
   for(let i = 0; i < shoppingCartList.length; i++){
-
+    
     sum += shoppingCartList[i].price;
+    
+    console.log(shoppingCartList[i]);
 
     const productBox = document.createElement("div");
     const imgContainer = document.createElement("div");
     const img = document.createElement("img");
     const title = document.createElement("p");
     const price = document.createElement("p");
+    const qtyContainer = document.createElement("div");
+    const plusBtn = document.createElement("button")
+    const minusBtn = document.createElement("button")
+    const qty = document.createElement("p");
 
     productBox.className = ("shoppingCartBox");
     imgContainer.className = ("imgContainerSC")
@@ -138,6 +149,9 @@ const shoppingCartHtml = () => {
     img.src = shoppingCartList[i].image;
     title.innerHTML = shoppingCartList[i].title;
     price.innerHTML = shoppingCartList[i].price +" $".toString();
+    plusBtn.innerHTML = "+";
+    minusBtn.innerHTML = "-";
+    qty.innerHTML = shoppingCartList[i].qty.toString();
 
     if(summaryOfValue){
       summaryOfValue.innerHTML = "";
@@ -148,7 +162,12 @@ const shoppingCartHtml = () => {
     productBox.appendChild(imgContainer)
     productBox.appendChild(title);
     title.appendChild(price);
+    qtyContainer.appendChild(minusBtn);
+    qtyContainer.appendChild(qty);
+    qtyContainer.appendChild(plusBtn);
+    title.appendChild(qtyContainer);
     shoppingCartContainer?.appendChild(productBox);
+
   };
 };
 
@@ -222,8 +241,8 @@ imgContainerM?.addEventListener("click", ()=>{
   
   showShoppingCartValue();
 
+  // Innehåll som visas när varukorgen är tom
   if(cartValue == 0){
-    // Innehåll som visas när varukorgen är tom
     const emtpyTitle = document.createElement("h3");
     const continueShoppingBtn = document.createElement("btn");
   
@@ -242,7 +261,7 @@ imgContainerM?.addEventListener("click", ()=>{
     const sumAside = document.querySelector(".sumAside") as HTMLDivElement;
     sumAside.className = ("sumAside__empty");
   }
-
+ // Navigering till kassa
   const checkOutBtn = document.getElementById("checkOutBtn");
 
   checkOutBtn?.addEventListener("click", ()=> {
