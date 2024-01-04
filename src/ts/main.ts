@@ -132,8 +132,6 @@ const shoppingCartHtml = () => {
   /* Loop för varukorg listan */
   for(let i = 0; i < shoppingCartList.length; i++){
     sum += shoppingCartList[i].price * shoppingCartList[i].qty;
-    
-    console.log(shoppingCartList[i]);
 
     const productBox = document.createElement("div");
     const imgContainer = document.createElement("div");
@@ -169,7 +167,7 @@ const shoppingCartHtml = () => {
     removeBtn.addEventListener("click", () => {
       shoppingCartList.splice(i);
       productBox.innerHTML = "";
-      cartValue=0;
+      cartValue = 0;
       cartValueTag.innerHTML = "";
       sum = 0;
 
@@ -211,8 +209,6 @@ const shoppingCartHtml = () => {
         shoppingCartHtml();
         showShoppingCartValue();
     }
-   /*  shoppingCartHtml();
-    showShoppingCartValue(); */
   }
     
     )
@@ -340,7 +336,10 @@ imgContainerM?.addEventListener("click", ()=>{
  
 const orderSummaryContainer = document.getElementById("orderSummaryContainer");
 
+let sum: number = 0;
+
 for (let i=0; i< shoppingCartList.length; i++){
+  sum += shoppingCartList[i].price * shoppingCartList[i].qty;
 
   const productBox = document.createElement("div");
   const imgContainer = document.createElement("div");
@@ -358,7 +357,10 @@ for (let i=0; i< shoppingCartList.length; i++){
   img.className = ("checkOut--img");
   title.className = ("checkOut--title");
   price.className = ("checkOut--price");
-  removeBtn.className = ("checkoutBox--removeBtn");
+  removeBtn.className = ("checkOut--removeBtn");
+  minusBtn.className = ("checkOut--minusBtn");
+  plusBtn.className = ("checkOut--plusBtn");
+  qtyContainer.className = ("checkOut--qty");
 
   img.src = shoppingCartList[i].image;
   title.innerHTML = shoppingCartList[i].title;
@@ -367,7 +369,16 @@ for (let i=0; i< shoppingCartList.length; i++){
   qty.innerHTML = shoppingCartList[i].qty.toString();
   minusBtn.innerHTML = "-";
   removeBtn.innerHTML ="Remove";
-
+  
+  removeBtn.addEventListener("click", () => {
+    shoppingCartList.splice(i);
+    productBox.innerHTML = "";
+    cartValue=0;
+    cartValueTag.innerHTML = "";
+    sum = 0; 
+    
+  });
+  
   imgContainer.appendChild(img);
   productBox.appendChild(imgContainer)
   productBox.appendChild(title);
@@ -378,8 +389,44 @@ for (let i=0; i< shoppingCartList.length; i++){
   qtyContainer.appendChild(plusBtn);
   title.appendChild(qtyContainer);
   qtyContainer.appendChild(removeBtn);
-}
 
+ // plusknapp för varorna i checkouten
+   plusBtn.addEventListener ("click", ()=>{
+    //productBox.remove();
+    //productBox.innerHTML = "";
+    if(shoppingCartContainer){
+      shoppingCartContainer.innerHTML ="";
+    }
+    shoppingCartList[i].qty++;
+    cartValue++;
+    qty.innerHTML = shoppingCartList[i].qty.toString();
+    
+    shoppingCartHtml();
+    showShoppingCartValue();
+  });
+
+  //Minus knapp för varorna i checkouten
+  minusBtn.addEventListener ("click", ()=>{
+    if(shoppingCartList[i].qty === 1){ 
+      cartValue --; 
+      productBox.remove();
+      shoppingCartList.splice(i,1);
+      sum =0;
+      
+      shoppingCartHtml();
+      showShoppingCartValue();
+
+    } else{
+      shoppingCartList[i].qty--;
+      qty.innerHTML = shoppingCartList[i].qty.toString();
+      cartValue--;
+      
+      shoppingCartHtml();
+      showShoppingCartValue();
+  }
+});
+
+ }
 }
 checkoutHTML();
 
@@ -401,8 +448,8 @@ const checkOutBtn = document.getElementById("checkOutBtn");
    window.open("shoppingCart.html");
   });
 
-  const continueShoppingBtn = document.getElementById("continueShoppingBtn");
+  const continueShoppingBtn = document.getElementById("continueShopBtn");
   continueShoppingBtn?.addEventListener("click", () => {
-    window.open("index.html");
+    window.open("index.html", "_self");
   });
 

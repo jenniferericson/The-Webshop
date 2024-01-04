@@ -286,3 +286,24 @@
   .header--nav {
     cursor: pointer;
   }
+
+  .checkOut--qty{
+    display: flex;
+    gap: 0.5rem;
+
+    .checkOut--plusBtn{
+     color: white;
+     background-color: #222;
+      
+    }
+    .checkOut--minusBtn {
+      color: white;
+      background-color: #222;
+
+    }
+
+    .checkOut--removeBtn {
+      cursor: pointer;
+      font-size: large;
+    }
+  }
