@@ -143,6 +143,7 @@ const shoppingCartHtml = () => {
     const minusBtn = document.createElement("button")
     const removeBtn = document.createElement("button");
     const qty = document.createElement("p");
+  
 
     productBox.className = ("shoppingCartBox");
     imgContainer.className = ("imgContainerSC");
@@ -150,6 +151,10 @@ const shoppingCartHtml = () => {
     title.className = ("shoppingCartBox--title");
     price.className = ("shoppingCartBox--price");
     removeBtn.className = ("shoppingCartBox--removeBtn");
+    
+    qtyContainer.className =("qtyContainer");
+    minusBtn.className = ("qtyContainer--changeQtyBtn");
+    plusBtn.className = ("qtyContainer--changeQtyBtn");
     
     img.src = shoppingCartList[i].image;
     title.innerHTML = shoppingCartList[i].title;

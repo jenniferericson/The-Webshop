@@ -282,3 +282,14 @@
     padding: 10px;
 
   }
+
+  .qtyContainer{
+    display: flex;
+    gap: 0.5rem;
+
+    &--changeQtyBtn{
+      padding: 0.2rem;
+      color: white;
+      background-color: #222;
+    }
+  }
