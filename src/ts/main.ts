@@ -335,5 +335,17 @@ const checkOutBtn = document.getElementById("checkOutBtn");
   const purchaseBtn = document.querySelector(".checkOut--purchaseBtn");
 
   purchaseBtn?.addEventListener("click", () => {
-    alert("Ditt köp har genomförts");
-  });;
+    window.open("purchase.html");
+  });
+
+  //checkoutbutton
+  const goBackToCartBtn = document.querySelector(".header--nav");
+  goBackToCartBtn?.addEventListener("click", () => {
+   window.open("shoppingCart.html");
+  });
+
+  const continueShoppingBtn = document.getElementById("continueShoppingBtn");
+  continueShoppingBtn?.addEventListener("click", () => {
+    window.open("index.html");
+  });
+
