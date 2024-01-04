@@ -165,10 +165,12 @@ const shoppingCartHtml = () => {
       productBox.innerHTML = "";
       cartValue=0;
       cartValueTag.innerHTML = "";
+     
 
       shoppingCartHtml();
     });
 
+  
     if(summaryOfValue){
       summaryOfValue.innerHTML = "";
       summaryOfValue.innerHTML = "Sum: " + sum.toString() +"$";
@@ -283,9 +285,6 @@ imgContainerM?.addEventListener("click", ()=>{
     sumAside.className = ("sumAside__empty");
   }
 
-
-
-
   //Funktion för checkOutLoop
   const checkoutHTML =()=>{
   const orderSummaryContainer = document.getElementById("orderSummaryContainer");
@@ -327,5 +326,17 @@ const checkOutBtn = document.getElementById("checkOutBtn");
   const purchaseBtn = document.querySelector(".checkOut--purchaseBtn");
 
   purchaseBtn?.addEventListener("click", () => {
-    alert("Ditt köp har genomförts");
-  });;
+    window.open("purchase.html");
+  });
+
+  //checkoutbutton
+  const goBackToCartBtn = document.querySelector(".header--nav");
+  goBackToCartBtn?.addEventListener("click", () => {
+   window.open("shoppingCart.html");
+  });
+
+  const continueShoppingBtn = document.getElementById("continueShoppingBtn");
+  continueShoppingBtn?.addEventListener("click", () => {
+    window.open("index.html");
+  });
+
