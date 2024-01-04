@@ -55,7 +55,6 @@ for (let i = 0; i < productsW.length; i++) {
     cartValue ++;
     shoppingCartHtml();
     showShoppingCartValue();
-    checkoutHTML();
   })
 }
 
@@ -130,8 +129,6 @@ const shoppingCartHtml = () => {
   for(let i = 0; i < shoppingCartList.length; i++){
     
     sum += shoppingCartList[i].price;
-    
-    console.log(shoppingCartList[i]);
 
     const productBox = document.createElement("div");
     const imgContainer = document.createElement("div");
@@ -161,7 +158,6 @@ const shoppingCartHtml = () => {
 
     removeBtn.addEventListener("click", () => {
       shoppingCartList.splice(i);
-      console.log(shoppingCartList);
       productBox.innerHTML = "";
       cartValue=0;
       cartValueTag.innerHTML = "";
