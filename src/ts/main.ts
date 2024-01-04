@@ -332,10 +332,10 @@ const checkOutBtn = document.getElementById("checkOutBtn");
     //checkoutHTML();
   })
 
-  const purchaseBtn = document.querySelector(".checkOut--purchaseBtn");
+  const purchaseBtn = document.querySelector(".purchaseBtn");
 
   purchaseBtn?.addEventListener("click", () => {
-    window.open("purchase.html");
+    window.open("purchase.html", "_self");
   });
 
   //checkoutbutton
