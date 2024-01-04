@@ -109,6 +109,9 @@
     
 /* style för desktop */
 @media (min-width: 885px ){
+  .goBackToCart {
+    display: inline;
+  }
   .checkOut{
       height: 100vh;
       display: flex;
