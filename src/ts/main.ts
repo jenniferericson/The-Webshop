@@ -179,6 +179,7 @@ const shoppingCartHtml = () => {
       shoppingCartContainer.innerHTML ="";
     }
       shoppingCartList[i].qty++;
+      cartValue++;
       shoppingCartHtml();
       showShoppingCartValue();
     })
@@ -202,6 +203,7 @@ const shoppingCartHtml = () => {
       }
 
       shoppingCartList[i].qty--;
+      cartValue--;
       shoppingCartHtml();
       showShoppingCartValue();
     })
