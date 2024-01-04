@@ -142,10 +142,10 @@ const shoppingCartHtml = () => {
     const plusBtn = document.createElement("button")
     const minusBtn = document.createElement("button")
     const removeBtn = document.createElement("button");
-    let qty = document.createElement("p");
+    const qty = document.createElement("p");
 
     productBox.className = ("shoppingCartBox");
-    imgContainer.className = ("imgContainerSC")
+    imgContainer.className = ("imgContainerSC");
     img.className = ("imgContainerSC--img");
     title.className = ("shoppingCartBox--title");
     price.className = ("shoppingCartBox--price");
@@ -172,41 +172,43 @@ const shoppingCartHtml = () => {
       showShoppingCartValue();
     });
 
+    //Plus knapp för varukorg
     plusBtn.addEventListener ("click", ()=>{
       //productBox.remove();
       //productBox.innerHTML = "";
       if(shoppingCartContainer){
-      shoppingCartContainer.innerHTML ="";
-    }
-      shoppingCartList[i].qty++;
-      cartValue++;
-      shoppingCartHtml();
-      showShoppingCartValue();
-    })
-
-    minusBtn.addEventListener ("click", ()=>{
-      //productBox.remove();
-      if(shoppingCartContainer){
         shoppingCartContainer.innerHTML ="";
       }
-
-      if(shoppingCartList[i].qty=== 1){
-        shoppingCartList.splice(i);
-        console.log(shoppingCartList);
-        productBox.innerHTML = "";
-        cartValue=0;
-        cartValueTag.innerHTML = "";
-        sum = 0;
-        checkSum()
-        shoppingCartHtml();
-        showShoppingCartValue();
-      }
-
-      shoppingCartList[i].qty--;
-      cartValue--;
+      shoppingCartList[i].qty++;
+      cartValue++;
+      qty.innerHTML = shoppingCartList[i].qty.toString();
       shoppingCartHtml();
       showShoppingCartValue();
-    })
+    });
+
+    //Minus knapp för varukorg
+    minusBtn.addEventListener ("click", ()=>{
+      //productBox.innerHTML = "";
+      //productBox.remove();
+      if(shoppingCartList[i].qty === 1){
+        productBox.remove();
+        shoppingCartList.splice(i);
+        //cartValueTag.innerHTML = "";
+        //sum = 0;
+        //cartValue = 0;      
+        /* checkSum();
+        shoppingCartHtml();
+        showShoppingCartValue(); */
+      } else{
+        shoppingCartList[i].qty--;
+        qty.innerHTML = shoppingCartList[i].qty.toString();
+        cartValue--; 
+    }
+   /*  shoppingCartHtml();
+    showShoppingCartValue(); */
+  }
+    
+    )
 
     const checkSum = () => {
     if(summaryOfValue){
