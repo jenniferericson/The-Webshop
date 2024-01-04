@@ -120,6 +120,10 @@ if (valueFromLs) {
 // Huvud funktion som sätter local storage och som styr summan i varukorgen
 const shoppingCartHtml = () => {
 
+  if(shoppingCartContainer){
+  shoppingCartContainer.innerHTML= "";
+}
+
   localStorage.setItem("shoppingCartList", JSON.stringify(shoppingCartList));
 
   const summaryOfValue = document.getElementById("summaryOfValue");
@@ -127,8 +131,9 @@ const shoppingCartHtml = () => {
   
   /* Loop för varukorg listan */
   for(let i = 0; i < shoppingCartList.length; i++){
+    sum += shoppingCartList[i].price * shoppingCartList[i].qty;
     
-    sum += shoppingCartList[i].price;
+    console.log(shoppingCartList[i]);
 
     const productBox = document.createElement("div");
     const imgContainer = document.createElement("div");
@@ -140,13 +145,18 @@ const shoppingCartHtml = () => {
     const minusBtn = document.createElement("button")
     const removeBtn = document.createElement("button");
     const qty = document.createElement("p");
+  
 
     productBox.className = ("shoppingCartBox");
-    imgContainer.className = ("imgContainerSC")
+    imgContainer.className = ("imgContainerSC");
     img.className = ("imgContainerSC--img");
     title.className = ("shoppingCartBox--title");
     price.className = ("shoppingCartBox--price");
     removeBtn.className = ("shoppingCartBox--removeBtn");
+    
+    qtyContainer.className =("qtyContainer");
+    minusBtn.className = ("qtyContainer--changeQtyBtn");
+    plusBtn.className = ("qtyContainer--changeQtyBtn");
     
     img.src = shoppingCartList[i].image;
     title.innerHTML = shoppingCartList[i].title;
@@ -167,6 +177,45 @@ const shoppingCartHtml = () => {
       shoppingCartHtml();
       showShoppingCartValue();
     });
+
+    //Plus knapp för varukorg
+    plusBtn.addEventListener ("click", ()=>{
+      //productBox.remove();
+      //productBox.innerHTML = "";
+      if(shoppingCartContainer){
+        shoppingCartContainer.innerHTML ="";
+      }
+      shoppingCartList[i].qty++;
+      cartValue++;
+      qty.innerHTML = shoppingCartList[i].qty.toString();
+      shoppingCartHtml();
+      showShoppingCartValue();
+    });
+
+    //Minus knapp för varukorg
+    minusBtn.addEventListener ("click", ()=>{
+      if(shoppingCartList[i].qty === 1){ 
+        cartValue --; 
+        productBox.remove();
+        shoppingCartList.splice(i,1);
+        sum =0;
+        checkSum();
+        shoppingCartHtml();
+        showShoppingCartValue();
+
+      } else{
+        shoppingCartList[i].qty--;
+        qty.innerHTML = shoppingCartList[i].qty.toString();
+        cartValue--;
+        checkSum();
+        shoppingCartHtml();
+        showShoppingCartValue();
+    }
+   /*  shoppingCartHtml();
+    showShoppingCartValue(); */
+  }
+    
+    )
 
     const checkSum = () => {
     if(summaryOfValue){

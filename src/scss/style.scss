@@ -201,6 +201,11 @@
   }
 }
 
+.shoppingCartTitleContainer{
+  display: flex;
+  justify-content: center;
+}
+
 // Styling för när varukorgen är tom
 .continueShoppingBtn {
   border: 1px solid v.$border-colour;
@@ -285,7 +290,18 @@
   margin-top: 300px; 
   background-color: black;
     color: white;
-    border-radius: 20px;
-    cursor: pointer;
-    padding: 5px;
-}
+    border-radius: 10px;
+    padding: 10px;
+
+  }
+
+  .qtyContainer{
+    display: flex;
+    gap: 0.5rem;
+
+    &--changeQtyBtn{
+      padding: 0.2rem;
+      color: white;
+      background-color: #222;
+    }
+  }
