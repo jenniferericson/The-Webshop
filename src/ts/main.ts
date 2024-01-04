@@ -55,7 +55,6 @@ for (let i = 0; i < productsW.length; i++) {
     cartValue ++;
     shoppingCartHtml();
     showShoppingCartValue();
-    checkoutHTML();
   })
 }
 
@@ -121,6 +120,10 @@ if (valueFromLs) {
 // Huvud funktion som sätter local storage och som styr summan i varukorgen
 const shoppingCartHtml = () => {
 
+  if(shoppingCartContainer){
+  shoppingCartContainer.innerHTML= "";
+}
+
   localStorage.setItem("shoppingCartList", JSON.stringify(shoppingCartList));
 
   const summaryOfValue = document.getElementById("summaryOfValue");
@@ -128,7 +131,6 @@ const shoppingCartHtml = () => {
   
   /* Loop för varukorg listan */
   for(let i = 0; i < shoppingCartList.length; i++){
-
     sum += shoppingCartList[i].price * shoppingCartList[i].qty;
     
     console.log(shoppingCartList[i]);
@@ -160,7 +162,6 @@ const shoppingCartHtml = () => {
     title.innerHTML = shoppingCartList[i].title;
     price.innerHTML = shoppingCartList[i].price +" $".toString();
     plusBtn.innerHTML = "+";
-
     qty.innerHTML = shoppingCartList[i].qty.toString();
     minusBtn.innerHTML = "-";
     removeBtn.innerHTML ="Remove";
@@ -198,16 +199,17 @@ const shoppingCartHtml = () => {
         cartValue --; 
         productBox.remove();
         shoppingCartList.splice(i,1);
-
+        sum =0;
         checkSum();
-        //shoppingCartHtml();
+        shoppingCartHtml();
         showShoppingCartValue();
 
       } else{
         shoppingCartList[i].qty--;
         qty.innerHTML = shoppingCartList[i].qty.toString();
         cartValue--;
-        //shoppingCartHtml();
+        checkSum();
+        shoppingCartHtml();
         showShoppingCartValue();
     }
    /*  shoppingCartHtml();
