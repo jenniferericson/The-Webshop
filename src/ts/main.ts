@@ -290,9 +290,6 @@ imgContainerM?.addEventListener("click", ()=>{
     sumAside.className = ("sumAside__empty");
   }
 
-
-
-
  //Funktion för checkOutLoop
  const checkoutHTML =()=>{
  
@@ -305,22 +302,37 @@ for (let i=0; i< shoppingCartList.length; i++){
   const img = document.createElement("img");
   const title = document.createElement("p");
   const price = document.createElement("p");
+  const qtyContainer = document.createElement("div");
+  const plusBtn = document.createElement("button")
+  const minusBtn = document.createElement("button")
+  const removeBtn = document.createElement("button");
+  const qty = document.createElement("p");
 
   productBox.className = ("checkOut--productBox");
   imgContainer.className = ("checkOut--imgContainer")
   img.className = ("checkOut--img");
   title.className = ("checkOut--title");
   price.className = ("checkOut--price");
+  removeBtn.className = ("checkoutBox--removeBtn");
 
   img.src = shoppingCartList[i].image;
   title.innerHTML = shoppingCartList[i].title;
   price.innerHTML = shoppingCartList[i].price +" $".toString();
+  plusBtn.innerHTML = "+";
+  qty.innerHTML = shoppingCartList[i].qty.toString();
+  minusBtn.innerHTML = "-";
+  removeBtn.innerHTML ="Remove";
 
   imgContainer.appendChild(img);
   productBox.appendChild(imgContainer)
   productBox.appendChild(title);
   title.appendChild(price);
   orderSummaryContainer?.appendChild(productBox);
+  qtyContainer.appendChild(minusBtn);
+  qtyContainer.appendChild(qty);
+  qtyContainer.appendChild(plusBtn);
+  title.appendChild(qtyContainer);
+  qtyContainer.appendChild(removeBtn);
 }
 
 }
