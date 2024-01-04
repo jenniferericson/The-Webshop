@@ -128,7 +128,7 @@ const shoppingCartHtml = () => {
   
   /* Loop för varukorg listan */
   for(let i = 0; i < shoppingCartList.length; i++){
-    
+
     sum += shoppingCartList[i].price * shoppingCartList[i].qty;
     
     console.log(shoppingCartList[i]);
@@ -142,7 +142,7 @@ const shoppingCartHtml = () => {
     const plusBtn = document.createElement("button")
     const minusBtn = document.createElement("button")
     const removeBtn = document.createElement("button");
-    const qty = document.createElement("p");
+    let qty = document.createElement("p");
 
     productBox.className = ("shoppingCartBox");
     imgContainer.className = ("imgContainerSC")
@@ -171,6 +171,40 @@ const shoppingCartHtml = () => {
       shoppingCartHtml();
       showShoppingCartValue();
     });
+
+    plusBtn.addEventListener ("click", ()=>{
+      //productBox.remove();
+      //productBox.innerHTML = "";
+      if(shoppingCartContainer){
+      shoppingCartContainer.innerHTML ="";
+    }
+      shoppingCartList[i].qty++;
+      shoppingCartHtml();
+      showShoppingCartValue();
+    })
+
+    minusBtn.addEventListener ("click", ()=>{
+      //productBox.remove();
+      if(shoppingCartContainer){
+        shoppingCartContainer.innerHTML ="";
+      }
+
+      if(shoppingCartList[i].qty=== 1){
+        shoppingCartList.splice(i);
+        console.log(shoppingCartList);
+        productBox.innerHTML = "";
+        cartValue=0;
+        cartValueTag.innerHTML = "";
+        sum = 0;
+        checkSum()
+        shoppingCartHtml();
+        showShoppingCartValue();
+      }
+
+      shoppingCartList[i].qty--;
+      shoppingCartHtml();
+      showShoppingCartValue();
+    })
 
     const checkSum = () => {
     if(summaryOfValue){

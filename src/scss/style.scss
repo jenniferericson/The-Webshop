@@ -201,6 +201,11 @@
   }
 }
 
+.shoppingCartTitleContainer{
+  display: flex;
+  justify-content: center;
+}
+
 // Styling för när varukorgen är tom
 .continueShoppingBtn {
   border: 1px solid v.$border-colour;
