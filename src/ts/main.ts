@@ -2,20 +2,22 @@ import { IProduct } from "../models/IProduct";
 import { getMProducts, getWProducts } from "../services/productService";
 import "./../scss/style.scss";
 
-/* Shoppingcart ikonen ändras när man lägger till produkter*/
+//Skapar variabel för varukorgs ikonen och hämtar p tagen som ska visa detta i domen senare
 let cartValue:number = 0;
 const cartValueTag = document.getElementById("cartValueTag") as HTMLElement;
-const storedCartValue = localStorage.getItem("cartValue");
 
+// Skapar local storage för varukorgs ikonen
+const cartValueLs = localStorage.getItem("cartValue");
 
-if (storedCartValue){
-  cartValue=JSON.parse(storedCartValue);
+if (cartValueLs) {
+  cartValue = JSON.parse(cartValueLs);
 }
 
-/* Hämta produkter på dam sidan*/
-const productsWContainer = document.getElementById("productsWContainer");
-
+// Hämtar dam produkterna från vårat api
 const productsW = await getWProducts();
+
+//Skapar html för våra produkter
+const productsWContainer = document.getElementById("productsWContainer");
 
 for (let i = 0; i < productsW.length; i++) {
   const productBox = document.createElement("div");
@@ -45,6 +47,7 @@ for (let i = 0; i < productsW.length; i++) {
   productBox.appendChild(addToCartBtn);
   productsWContainer?.appendChild(productBox);
   
+  // Kollar ifall produkten finns i shopping cart och då ändras qty på produkten, annars läggs den till i shopping cart listan
   addToCartBtn.addEventListener("click", ()=>{
     if(shoppingCartList.includes(productsW[i])) {
       productsW[i].qty++;
@@ -52,16 +55,17 @@ for (let i = 0; i < productsW.length; i++) {
       productsW[i].qty = 1;
       shoppingCartList.push(productsW[i]);
     } 
-    cartValue ++;
-    shoppingCartHtml();
-    showShoppingCartValue();
+    cartValue ++; //Ökar antalet i vår varukorgs ikon
+    shoppingCartHtml(); //Sparar ändringarna som skett till local storage och skapar html för varukorgen
+    showShoppingCartValue(); // Sparar ändringarna i varukorgs ikonen till local storage
   })
 }
 
-/* Hämta produkter på herr sidan*/
-const productsMContainer = document.getElementById("productsMContainer");
-
+// Hämtar herr produkterna från vårat api
 const productsM = await getMProducts();
+
+//Skapar html för våra produkter
+const productsMContainer = document.getElementById("productsMContainer");
 
 for (let i = 0; i < productsM.length; i++) {
   const productBox = document.createElement("div");
@@ -91,24 +95,23 @@ for (let i = 0; i < productsM.length; i++) {
   productBox.appendChild(addToCartBtn);
   productsMContainer?.appendChild(productBox);
   
+ // Kollar ifall produkten finns i shopping cart och då ändras qty på produkten, annars läggs den till i shopping cart listan
   addToCartBtn.addEventListener("click", ()=>{
     if(shoppingCartList.includes(productsM[i])) {
-      productsM[i].qty++;
+      shoppingCartList[i].qty++;
     }else{
       productsM[i].qty = 1;
       shoppingCartList.push(productsM[i]);
     }
-    cartValue++;
-    shoppingCartHtml();
-    showShoppingCartValue();
+    cartValue++; //Ökar antalet i vår varukorgs ikon
+    shoppingCartHtml(); //Sparar ändringarna som skett till local storage och skapar html för varukorgen
+    showShoppingCartValue(); // Sparar ändringarna i varukorgs ikonen till local storage
   })
 };
     
 
 
-// Skapande av varukorg lista och local storage getItem
-const shoppingCartContainer = document.getElementById("shoppingCartContainer");
-
+// Skapande av varukorg lista och local storage för den
 let shoppingCartList:IProduct[] = [];
 
 const valueFromLs = localStorage.getItem("shoppingCartList");
@@ -116,19 +119,20 @@ const valueFromLs = localStorage.getItem("shoppingCartList");
 if (valueFromLs) {
   shoppingCartList = JSON.parse(valueFromLs);
 }
+const shoppingCartContainer = document.getElementById("shoppingCartContainer");
 
 // Huvud funktion som sätter local storage och som styr summan i varukorgen
 const shoppingCartHtml = () => {
+  localStorage.setItem("shoppingCartList", JSON.stringify(shoppingCartList));
+  
+  const summaryOfValue = document.getElementById("summaryOfValue");
 
+  let sum: number = 0;
+
+//Tömma containern varje gång funktionen körs
   if(shoppingCartContainer){
   shoppingCartContainer.innerHTML= "";
 }
-
-  localStorage.setItem("shoppingCartList", JSON.stringify(shoppingCartList));
-
-  const summaryOfValue = document.getElementById("summaryOfValue");
-  let sum: number = 0;
-  
   /* Loop för varukorg listan */
   for(let i = 0; i < shoppingCartList.length; i++){
     sum += shoppingCartList[i].price * shoppingCartList[i].qty;
@@ -164,17 +168,18 @@ const shoppingCartHtml = () => {
     minusBtn.innerHTML = "-";
     removeBtn.innerHTML ="Remove";
 
+    //Ta bort produkten ur listan och ändra varukorgs ikonen
     removeBtn.addEventListener("click", () => {
-      shoppingCartList.splice(i);
-      productBox.innerHTML = "";
-      cartValue = 0;
+      shoppingCartList.splice(i,1);
+      productBox.remove();
+      cartValue --;
       cartValueTag.innerHTML = "";
       sum = 0;
 
-      checkSum()
-      shoppingCartHtml();
-      showShoppingCartValue();
-      checkIfEmpty();
+      checkSum() // Uppdaterar total summan
+      shoppingCartHtml(); //Sparar ändringarna som skett till local storage och kör igenom loopen igen
+      showShoppingCartValue(); //Sparar ändringarna i varukorgs ikonen till local storage
+      checkIfEmpty(); //Kollar ifall varukorgen är tom, för då körs en funktion
     });
 
     //Plus knapp för varukorg
@@ -185,34 +190,33 @@ const shoppingCartHtml = () => {
       shoppingCartList[i].qty++;
       cartValue++;
       qty.innerHTML = shoppingCartList[i].qty.toString();
-      shoppingCartHtml();
-      showShoppingCartValue();
+      shoppingCartHtml(); //Sparar ändringarna som skett till local storage och kör igenom loopen igen
+      showShoppingCartValue(); //Sparar ändringarna i varukorgs ikonen till local storage
     });
 
-    //Minus knapp för varukorg
+    //Minus knapp för varukorg, ifall det ligger qty 1 på produkten och vi klickar så tas den bort helt annars minskar qty
     minusBtn.addEventListener ("click", ()=>{
       if(shoppingCartList[i].qty === 1){ 
         cartValue --; 
         productBox.remove();
         shoppingCartList.splice(i,1);
         sum =0;
-        checkSum();
-        shoppingCartHtml();
-        showShoppingCartValue();
-        checkIfEmpty();
+        checkSum(); // Uppdaterar total summan
+        shoppingCartHtml(); //Sparar ändringarna som skett till local storage och kör igenom loopen igen
+        showShoppingCartValue();//Sparar ändringarna i varukorgs ikonen till local storage
+        checkIfEmpty();  //Kollar ifall varukorgen är tom, för då körs en funktion
 
       } else{
         shoppingCartList[i].qty--;
         qty.innerHTML = shoppingCartList[i].qty.toString();
         cartValue--;
-        checkSum();
-        shoppingCartHtml();
-        showShoppingCartValue();
+        checkSum(); // Uppdaterar total summan
+        shoppingCartHtml(); //Sparar ändringarna som skett till local storage och kör igenom loopen igen
+        showShoppingCartValue();//Sparar ändringarna i varukorgs ikonen till local storage
     }
-  }
-    
-    )
+  });
 
+    //Uppdatera total summan
     const checkSum = () => {
     if(summaryOfValue){
       summaryOfValue.innerHTML = "";
@@ -250,7 +254,7 @@ imgContainerM?.addEventListener("click", ()=>{
   window.open("mens.html", "_self");
 })
 
-//funktion för att visualisera val av betalning
+//skapande av html för att visualisera val av betalning/konto/leverans
   const paymentChoice = document.getElementById("paymentChoice");
   const card = document.getElementById("card");
   const swish = document.getElementById("swish");
@@ -298,6 +302,8 @@ imgContainerM?.addEventListener("click", ()=>{
     cardNumberDiv.appendChild(cardNumberInput);
   });
 
+  
+  //Sparar ändringar för varukorgs ikon till local storage
   const showShoppingCartValue = ()=> {
     localStorage.setItem("cartValue", JSON.stringify(cartValue));
     if (cartValueTag){
@@ -307,9 +313,6 @@ imgContainerM?.addEventListener("click", ()=>{
   }
   
   showShoppingCartValue();
-
-
-
 
 
  //Funktion för checkOutLoop
@@ -439,17 +442,20 @@ const checkIfEmpty = () => {
 
 checkIfEmpty();
 
+//Knapp för att ta sig vidare till kassa
 const checkOutBtn = document.getElementById("checkOutBtn");
   checkOutBtn?.addEventListener("click", ()=>{
     window.open("checkOut.html", "_self");
   })
 
+  //Knapp för att simulera köp
   const purchaseBtn = document.querySelector(".purchaseBtn");
 
   purchaseBtn?.addEventListener("click", () => {
     window.open("purchase.html", "_self");
   });
 
+  //Knapp för att ta sig tillbaka till startsidan efter genomfört köp
   const continueShoppingBtn = document.getElementById("continueShopBtn");
   continueShoppingBtn?.addEventListener("click", () => {
     shoppingCartList.splice(0,shoppingCartList.length)
