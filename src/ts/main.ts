@@ -417,7 +417,6 @@ checkoutHTML();
 // Innehåll som visas när varukorgen är tom
 const checkIfEmpty = () => {
   if(cartValue === 0){
-  console.log("det funka");
   const emtpyTitle = document.createElement("h3");
   const continueShoppingBtn = document.createElement("btn");
 
@@ -453,6 +452,9 @@ const checkOutBtn = document.getElementById("checkOutBtn");
 
   const continueShoppingBtn = document.getElementById("continueShopBtn");
   continueShoppingBtn?.addEventListener("click", () => {
-    window.open("index.html", "_self");
+    shoppingCartList.splice(0,shoppingCartList.length)
+    cartValue = 0;
+    shoppingCartHtml();
+    showShoppingCartValue();
   });
 
