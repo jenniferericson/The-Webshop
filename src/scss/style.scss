@@ -39,7 +39,7 @@
 
     svg {
       width: 30px;
-      cursor: pointer;
+      cursor: v.$click;
       margin-bottom: 10px;
     }
   }
@@ -62,16 +62,13 @@
   
 
     &--text{
-        color:white;
+        color: v.$secondary-color;
         font-size: 120px;
         position: absolute;
     }
 
-    &--pW{
-      transition: 0.3s;
-    }
-    &--pM{
-      transition: 0.3s;
+    &--pW, &--pM {
+      transition: v.$transition-duration;
     }
 
     &--imgContainerW {
@@ -98,11 +95,7 @@
 }
 
 /* Styling för produktsidorna */
-#productsWContainer {
-  @include mixins.productsContainer;
-}
-
-#productsMContainer {
+#productsWContainer, #productsMContainer  {
   @include mixins.productsContainer;
 }
 
@@ -111,7 +104,7 @@
   flex-direction: column;
   margin-bottom: 20px;
   width: 100%;
-  overflow:hidden;
+  overflow: hidden;
   
   &:hover{
     opacity: 50%;
@@ -171,7 +164,7 @@
   margin-left: 1rem;
 
   &--h1 {
-    font-size: 40px;
+    font-size: v.$large-text;
   }
 
   &--p {
@@ -192,11 +185,11 @@
   &--title {
     display: flex;
     margin: 2rem;
-    font-size: 40px;
+    font-size: v.$large-text;
   }
 
   &--removeBtn {
-  background-color: black;
+  background-color: v.$primary-color;
   }
 }
 
@@ -240,7 +233,7 @@
   &--changeQtyBtn{
     padding: 0.2rem;
     color: white;
-    background-color: #222;
+    background-color: v.$primary-color;
   }
 }
 
@@ -249,7 +242,7 @@
   position: fixed;
   top: 60%; 
   right: 5%;
-  background-color: #f0f0f0;  
+  background-color: v.$secondary-color;  
   box-sizing: border-box;
   margin: 30px;
 
@@ -259,12 +252,12 @@
 
   &--Btn {
     display: flex;
-    background-color: black;
-    color: white;
+    background-color: v.$primary-color;
+    color: v.$secondary-color;
     border-radius: 20px;
     cursor: pointer;
     margin-top: 50px;
-    padding: 10px;
+    padding: v.$padding;
   }
 }
 
@@ -276,15 +269,14 @@
 
 .continueShoppingBtn {
   border: 1px solid v.$border-colour;
-  padding: 10px;
+  padding: v.$padding;
   margin-top: 1.5rem;
 
    &:hover {
      cursor: v.$click;
-     background-color: rgb(231, 231, 231); 
+     background-color: v.$secondary-color; 
    }
 }
-
 
 //Ditt köp har genomförts-styleing
 #purchaseDiv {
@@ -305,11 +297,11 @@
 
 #continueShopBtn {
   margin-top: 300px; 
-  background-color: black;
-    color: white;
+  background-color: v.$border-colour;
+    color: v.$secondary-color;
     border-radius: 10px;
-    padding: 10px;
-    cursor: pointer;
+    padding: v.$padding;
+    cursor: v.$click;
 
   }
 

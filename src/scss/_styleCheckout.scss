@@ -1,21 +1,19 @@
 /* start styling för kassa sida */
 /* mobil */
+@use "variables" as v;
+@use "mixins";
+
 @media (max-width: 884px){
 
     .checkOut{
       height: 90vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      //background-color: #222;
+      @include mixins.flex-justify;
     
-      &--container{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+      &--container {
+        @include mixins.flex-justify;
         width: 80%;
         height: 30rem;
-        border: 1px solid black;
+        border: 1px solid v.$primary-color;
       }
     }      
       .orderSummary{
@@ -36,28 +34,22 @@
             flex-direction: column;
             margin: 1rem;
             padding: 1rem;
-            //width:10rem;
-            //height: 5rem;
-            border: 1px solid black;
+            border: 1px solid v.$primary-color;
             border-radius: 20px;
           }
         }    
           
-          .accountInformation{
-            display: flex;
-            align-items: center;
-            justify-content: center;
+          .accountInformation {
+            @include mixins.flex-justify;
             flex-direction: column;
             margin: 1rem;
             padding: 1rem;
-            //width: 10rem;
-            //height: 5rem;
-            border: 1px solid black;
+            border: 1px solid v.$primary-color;
             border-radius: 20px;
     
             &--inputAcount{
               width: 10rem;
-              border: 1px solid black;
+              border: 1px solid v.$primary-color;
               margin: 0.5rem;
             }
           }
@@ -69,22 +61,17 @@
               &--box{
                 width: 50%;
                 height: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                @include mixins.flex-justify;
                 flex-direction: column;
-                //border: 1px solid black;
                 padding: 1rem;
                 margin: 1rem;
               }
             }
     
             #paymentChoice{
-              display: flex;
-              align-items:center;
-              justify-content: center;
+              @include mixins.flex-justify;
               flex-direction: column;
-              border: 1px solid black;
+              border: 1px solid v.$primary-color;
               border-radius: 20px;
             }  
     
@@ -94,9 +81,7 @@
               }
     
               .monthCvcDiv{
-              display: flex;
-              align-items:center;
-              justify-content: center;
+                @include mixins.flex-justify;
               }
               .monthCvc{
                 width: 3rem;
@@ -105,35 +90,29 @@
               
 }
     
-    
-    
 /* style för desktop */
-@media (min-width: 885px ){
+@media (min-width: 885px ) {
   .goBackToCart {
     display: inline;
   }
   .checkOut{
       height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      //background-color: #222;
+      @include mixins.flex-justify;
       
         &--container{
           height: 30rem;
           width: 40rem;
           display: flex;
-          border: 1px solid black;
+          border: 1px solid v.$primary-color;
         }
   }
     .shippingInformation{
             height: 100%;
             width: 50%;
-            border-right: 1px solid black;
+            border-right: 1px solid v.$primary-color;
     
             display: flex;
             align-items: center;
-            //justify-content: center;
             flex-direction: column;
 
         &--supplier{
@@ -142,9 +121,7 @@
               flex-direction: column;
               margin: 1rem;
               padding: 1rem;
-              /* width: 10rem;
-              height: 5rem; */
-              border: 1px solid black;
+              border: 1px solid v.$primary-color;
               border-radius: 20px;
       
               button{
@@ -155,20 +132,16 @@
     }
 
             .accountInformation{
-              display: flex;
-              align-items: center;
-              justify-content: center;
+              @include mixins.flex-justify;
               flex-direction: column;
               margin: 1rem;
               padding: 1rem;
-              //width: 10rem;
-              //height: 5rem;
-              border: 1px solid black;
+              border: 1px solid v.$primary-color;
               border-radius: 20px;
 
               &--inputAcount{
                 width: 10rem;
-                border: 1px solid black;
+                border: 1px solid v.$primary-color;
                 margin: 0.5rem;
               }
             }
@@ -181,23 +154,17 @@
                 &--box{
                   width: 50%;
                   height: 100%;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
+                  @include mixins.flex-justify;
                   flex-direction: column;
-                  //border: 1px solid black;
                   padding: 1rem;
-                  //margin: 1rem;
                 }
               }
               
       
               #paymentChoice{
-                display: flex;
-                align-items:center;
-                justify-content: center;
+                @include mixins.flex-justify;
                 flex-direction: column;
-                border: 1px solid black;
+                border: 1px solid v.$primary-color;
                 border-radius: 20px;
               } 
       
@@ -207,9 +174,7 @@
                 }
       
                 .monthCvcDiv{
-                display: flex;
-                align-items:center;
-                justify-content: center;
+                  @include mixins.flex-justify;
                 }
 
                 .monthCvc{
@@ -220,11 +185,8 @@
           .orderSummary{
             width: 50%;
             height: 100%;
-            background-color: white;
-    
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background-color: v.$secondary-color;
+            @include mixins.flex-justify;
             flex-direction: column;
           }
         
@@ -237,7 +199,7 @@
         &--footer{
           width: 100%;
           padding: 1rem;
-          border-top: 1px solid black;
+          border-top: 1px solid v.$primary-color;
           display: flex;
           justify-content: end;
           align-items: end;
@@ -249,7 +211,7 @@
     .checkOut--imgContainer {
       height: 3rem;
       width: 3rem;
-      border: 1px solid black;
+      border: 1px solid v.$border-colour;
       padding: 10px;
     
       .checkOut--img {
@@ -280,14 +242,14 @@
 }
 .purchaseBtn {
   cursor: pointer;
-  background-color: black;
-  color: white;
+  background-color: v.$border-colour;
+  color: v.$secondary-color;
   border-radius: 10px;
   padding: 5px;
 }
 
   .header--nav {
-    cursor: pointer;
+    cursor: v.$click;
   }
 
   .checkOut--qty{
@@ -295,18 +257,18 @@
     gap: 0.5rem;
 
     .checkOut--plusBtn{
-     color: white;
-     background-color: #222;
+     color: v.$secondary-color;
+     background-color: v.$primary-color;
       
     }
     .checkOut--minusBtn {
-      color: white;
-      background-color: #222;
+      color: v.$secondary-color;
+      background-color: v.$primary-color;
 
     }
 
     .checkOut--removeBtn {
-      cursor: pointer;
+      cursor: v.$click;
       font-size: large;
     }
   }
