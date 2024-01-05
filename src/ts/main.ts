@@ -416,7 +416,7 @@ checkoutHTML();
 
 // Innehåll som visas när varukorgen är tom
 const checkIfEmpty = () => {
-  if(cartValue === 0){
+  if(shoppingCartList.length === 0){
   const emtpyTitle = document.createElement("h3");
   const continueShoppingBtn = document.createElement("btn");
 
