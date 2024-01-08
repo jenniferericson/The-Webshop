@@ -63,9 +63,9 @@ for (let i = 0; i < productsW.length; i++) {
     else{
       shoppingCartList[index].qty++;
     } 
-    cartValue ++; //Ökar antalet i vår varukorgs ikon
-    shoppingCartHtml(); //Sparar ändringarna som skett till local storage och skapar html för varukorgen
-    showShoppingCartValue(); // Sparar ändringarna i varukorgs ikonen till local storage
+    cartValue ++; 
+    shoppingCartHtml(); 
+    showShoppingCartValue(); 
   })
 }
 
@@ -116,9 +116,9 @@ for (let i = 0; i < productsM.length; i++) {
     else{
       shoppingCartList[index].qty++;
     } 
-    cartValue++; //Ökar antalet i vår varukorgs ikon
-    shoppingCartHtml(); //Sparar ändringarna som skett till local storage och skapar html för varukorgen
-    showShoppingCartValue(); // Sparar ändringarna i varukorgs ikonen till local storage
+    cartValue++; 
+    shoppingCartHtml(); 
+    showShoppingCartValue(); 
   })
 };
     
@@ -187,10 +187,10 @@ const shoppingCartHtml = () => {
       cartValueTag.innerHTML = "";
       sum = 0;
 
-      checkSum() // Uppdaterar total summan
-      shoppingCartHtml(); //Sparar ändringarna som skett till local storage och kör igenom loopen igen
-      showShoppingCartValue(); //Sparar ändringarna i varukorgs ikonen till local storage
-      checkIfEmpty(); //Kollar ifall varukorgen är tom, för då körs en funktion
+      checkSum() 
+      shoppingCartHtml(); 
+      showShoppingCartValue(); 
+      checkIfEmpty(); 
     });
 
     //Plus knapp för varukorg
@@ -201,8 +201,8 @@ const shoppingCartHtml = () => {
       shoppingCartList[i].qty++;
       cartValue++;
       qty.innerHTML = shoppingCartList[i].qty.toString();
-      shoppingCartHtml(); //Sparar ändringarna som skett till local storage och kör igenom loopen igen
-      showShoppingCartValue(); //Sparar ändringarna i varukorgs ikonen till local storage
+      shoppingCartHtml(); 
+      showShoppingCartValue(); 
     });
 
     //Minus knapp för varukorg, ifall det ligger qty 1 på produkten och vi klickar så tas den bort helt annars minskar qty
@@ -212,18 +212,18 @@ const shoppingCartHtml = () => {
         productBox.remove();
         shoppingCartList.splice(i,1);
         sum =0;
-        checkSum(); // Uppdaterar total summan
-        shoppingCartHtml(); //Sparar ändringarna som skett till local storage och kör igenom loopen igen
-        showShoppingCartValue();//Sparar ändringarna i varukorgs ikonen till local storage
-        checkIfEmpty();  //Kollar ifall varukorgen är tom, för då körs en funktion
+        checkSum(); 
+        shoppingCartHtml(); 
+        showShoppingCartValue();
+        checkIfEmpty();  
 
       } else{
         shoppingCartList[i].qty--;
         qty.innerHTML = shoppingCartList[i].qty.toString();
         cartValue--;
-        checkSum(); // Uppdaterar total summan
-        shoppingCartHtml(); //Sparar ändringarna som skett till local storage och kör igenom loopen igen
-        showShoppingCartValue();//Sparar ändringarna i varukorgs ikonen till local storage
+        checkSum(); 
+        shoppingCartHtml(); 
+        showShoppingCartValue();
     }
   });
 
@@ -375,6 +375,7 @@ for (let i=0; i< shoppingCartList.length; i++){
   minusBtn.innerHTML = "-";
   removeBtn.innerHTML ="Remove";
   
+  //Ta bort produkten ur listan och ändra varukorgs ikonen
   removeBtn.addEventListener("click", () => {
       cartValue = cartValue - shoppingCartList[i].qty;
       console.log(shoppingCartList[i])
@@ -383,9 +384,9 @@ for (let i=0; i< shoppingCartList.length; i++){
       sum =0;
       summaryOfValue.innerHTML = "Sum: " + sum.toString() +"$";
       
-      shoppingCartHtml(); //Sparar ändringarna som skett till local storage och kör igenom loopen igen
-      showShoppingCartValue(); //Sparar ändringarna i varukorgs ikonen till local storage
-      checkoutHTML(); //Kör om loopen 
+      shoppingCartHtml(); 
+      showShoppingCartValue();
+      checkoutHTML();  
       
   });
   
