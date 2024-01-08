@@ -54,17 +54,14 @@ for (let i = 0; i < productsW.length; i++) {
       return shoppingCartList.findIndex((obj) => obj.id === id)
     }
    const index = check(shoppingCartList, productsW[i].id)
-   console.log(index)
+  
     if(index === -1) {
-      console.log("hej")
       const cartItem:CartItem = new CartItem(0,productsW[i], productsW[i].id);
       cartItem.qty = 1;
       shoppingCartList.push(cartItem);
-      console.log(cartItem)
     }
     else{
       shoppingCartList[index].qty++;
-      console.log(shoppingCartList)
     } 
     cartValue ++; //Ökar antalet i vår varukorgs ikon
     shoppingCartHtml(); //Sparar ändringarna som skett till local storage och skapar html för varukorgen
@@ -111,17 +108,13 @@ for (let i = 0; i < productsM.length; i++) {
       return shoppingCartList.findIndex((obj) => obj.id === id)
     }
    const index = check(shoppingCartList, productsM[i].id)
-   console.log(index)
     if(index === -1) {
-      console.log("hej")
       const cartItem:CartItem = new CartItem(0,productsM[i], productsM[i].id);
       cartItem.qty = 1;
       shoppingCartList.push(cartItem);
-      console.log(cartItem)
     }
     else{
       shoppingCartList[index].qty++;
-      console.log(shoppingCartList)
     } 
     cartValue++; //Ökar antalet i vår varukorgs ikon
     shoppingCartHtml(); //Sparar ändringarna som skett till local storage och skapar html för varukorgen
@@ -204,7 +197,7 @@ const shoppingCartHtml = () => {
     plusBtn.addEventListener ("click", ()=>{
       if(shoppingCartContainer){
         shoppingCartContainer.innerHTML ="";
-      }
+      };
       shoppingCartList[i].qty++;
       cartValue++;
       qty.innerHTML = shoppingCartList[i].qty.toString();
@@ -345,6 +338,11 @@ const summaryOfValue = document.getElementById("summaryOfValue") as HTMLParagrap
 
 let sum: number = 0;
 
+//Tömma containern varje gång funktionen körs
+if(orderSummaryContainer){
+  orderSummaryContainer.innerHTML= "";
+}
+
 for (let i=0; i< shoppingCartList.length; i++){
   sum += shoppingCartList[i].product.price * shoppingCartList[i].qty;
 
@@ -378,15 +376,17 @@ for (let i=0; i< shoppingCartList.length; i++){
   removeBtn.innerHTML ="Remove";
   
   removeBtn.addEventListener("click", () => {
-    cartValue = 0; 
-    productBox.remove();
-    shoppingCartList.splice(i,1);
-    sum =0;
-    summaryOfValue.innerHTML = "Sum: " + sum.toString() +"$";
-    
-    shoppingCartHtml();
-    showShoppingCartValue();
-
+      cartValue = cartValue - shoppingCartList[i].qty;
+      console.log(shoppingCartList[i])
+      shoppingCartList.splice(i,1);
+      productBox.remove();
+      sum =0;
+      summaryOfValue.innerHTML = "Sum: " + sum.toString() +"$";
+      
+      shoppingCartHtml(); //Sparar ändringarna som skett till local storage och kör igenom loopen igen
+      showShoppingCartValue(); //Sparar ändringarna i varukorgs ikonen till local storage
+      checkoutHTML(); //Kör om loopen 
+      
   });
   
   imgContainer.appendChild(img);
@@ -404,7 +404,7 @@ for (let i=0; i< shoppingCartList.length; i++){
    plusBtn.addEventListener ("click", ()=>{
     if(shoppingCartContainer){
       shoppingCartContainer.innerHTML ="";
-    }
+    } 
     shoppingCartList[i].qty++;
     cartValue++;
     qty.innerHTML = shoppingCartList[i].qty.toString();
