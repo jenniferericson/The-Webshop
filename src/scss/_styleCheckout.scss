@@ -88,7 +88,7 @@
 }
     
 /* style för desktop */
-@media (min-width: 885px ) {
+
   .goBackToCart {
     display: inline;
   }
@@ -103,7 +103,7 @@
           border: 1px solid v.$primary-color;
         }
   }
-    .shippingInformation{
+  .shippingInformation{
             height: 100%;
             width: 50%;
             border-right: 1px solid v.$primary-color;
@@ -127,111 +127,89 @@
         }
     }
 
-            .accountInformation{
-              @include mixins.flex-justify-column;
-              margin: 1rem;
-              padding: 1rem;
-              border: 1px solid v.$primary-color;
-              border-radius: 20px;
-
-              &--inputAcount{
-                width: 10rem;
-                border: 1px solid v.$primary-color;
-                margin: 0.5rem;
-              }
-            }
-
-
-
-              .payMethod{
-                display: flex;
-
-                &--box{
-                  width: 50%;
-                  height: 100%;
-                  @include mixins.flex-justify-column;
-                  padding: 1rem;
-                }
-              }
-              
-      
-              #paymentChoice{
-                @include mixins.flex-justify-column;
-                border: 1px solid v.$primary-color;
-                border-radius: 20px;
-              } 
-      
-                .cardNumber{
-                  width: 8rem;
-                  margin: 0.5rem;
-                }
-      
-                .monthCvcDiv{
-                  @include mixins.flex-justify;
-                }
-
-                .monthCvc{
-                  width: 3rem;
-                  margin: 1rem;
-                }
-                
-          .orderSummary{
-            width: 50%;
-            height: 100%;
-            background-color: v.$secondary-color;
-            @include mixins.flex-justify-column;
-          }
-        
-    
-      #orderSummaryContainer{
-        height: 20rem;
-        overflow: auto;
-        margin-top: 10px;
-
-        &--footer{
-          width: 100%;
-          padding: 1rem;
-          border-top: 1px solid v.$primary-color;
-          display: flex;
-          justify-content: end;
-          align-items: end;
-          flex-direction: column;
-          
-        }
-      }  
-
-    .checkOut--imgContainer {
-      height: 3rem;
-      width: 3rem;
-      border: 1px solid v.$border-colour;
-      padding: 10px;
-    
-      .checkOut--img {
-          height: 100%;
-          width: 100%;
-          object-fit: scale-down;
-      }
-    }
-
-    .checkOut--productBox{
-      display: flex;
-      width: 100%;
-      padding: 1rem;
-    
-      .checkOut--title {
-       padding: 10px;
-        font-size: v.$small-text;
-      }
-    
-      .checkOut--price {
-        font-size: v.$small-text;
-        margin: 10px 0;
-      }
-
-      
-    }
-
+.accountInformation{
+  @include mixins.flex-justify-column;
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid v.$primary-color;
+  border-radius: 20px;
+  &--inputAcount{
+    width: 10rem;
+    border: 1px solid v.$primary-color;
+    margin: 0.5rem;
+  }
 }
+.payMethod{
+  display: flex;
+  &--box{
+    width: 50%;
+    height: 100%;
+    @include mixins.flex-justify-column;
+    padding: 1rem;
+  }
+}
+#paymentChoice{
+  @include mixins.flex-justify-column;
+  border: 1px solid v.$primary-color;
+  border-radius: 20px;
+} 
+.cardNumber{
+  width: 8rem;
+  margin: 0.5rem;
+}
+.monthCvcDiv{
+  @include mixins.flex-justify;
+}
+.monthCvc{
+  width: 3rem;
+  margin: 1rem;
+}
+.orderSummary{
+  width: 50%;
+  height: 100%;
+  background-color: v.$secondary-color;
+  @include mixins.flex-justify-column;
+}
+#orderSummaryContainer{
+  height: 20rem;
+  overflow: auto;
+  margin-top: 10px;
+  &--footer{
+    width: 100%;
+    padding: 1rem;
+    border-top: 1px solid v.$primary-color;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    flex-direction: column;
+  }
+}  
+.checkOut--imgContainer {
+  height: 3rem;
+  width: 3rem;
+  border: 1px solid v.$border-colour;
+  padding: 10px;
+  .checkOut--img {
+    height: 100%;
+    width: 100%;
+    object-fit: scale-down;
+  }
+}
+.checkOut--productBox{
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+  .checkOut--title {
+    padding: 10px;
+    font-size: v.$small-text;
+  }
+  .checkOut--price {
+    font-size: v.$small-text;
+    margin: 10px 0;
+  }
+}
+
+
 .purchaseBtn {
   cursor: pointer;
   background-color: v.$border-colour;
