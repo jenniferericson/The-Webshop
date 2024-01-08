@@ -1,4 +1,4 @@
-import { IProduct } from "../models/IProduct";
+import { CartItem } from "../models/CartItem";
 import { getMProducts, getWProducts } from "../services/productService";
 import "./../scss/style.scss";
 
@@ -12,6 +12,7 @@ const cartValueLs = localStorage.getItem("cartValue");
 if (cartValueLs) {
   cartValue = JSON.parse(cartValueLs);
 }
+
 
 // Hämtar dam produkterna från vårat api
 const productsW = await getWProducts();
@@ -38,7 +39,7 @@ for (let i = 0; i < productsW.length; i++) {
   title.innerHTML = productsW[i].title;
   price.innerHTML = productsW[i].price +" $".toString();
   addToCartBtn.innerHTML = "Add to cart";
-  productsW[i].qty = 0;
+
   
   productBox.appendChild(imgContainer);
   imgContainer.appendChild(img);
@@ -49,11 +50,21 @@ for (let i = 0; i < productsW.length; i++) {
   
   // Kollar ifall produkten finns i shopping cart och då ändras qty på produkten, annars läggs den till i shopping cart listan
   addToCartBtn.addEventListener("click", ()=>{
-    if(shoppingCartList.includes(productsW[i])) {
-      productsW[i].qty++;
-    }else{
-      productsW[i].qty = 1;
-      shoppingCartList.push(productsW[i]);
+    let check = (shoppingCartList:CartItem[], id:number) => {
+      return shoppingCartList.findIndex((obj) => obj.id === id)
+    }
+   const index = check(shoppingCartList, productsW[i].id)
+   console.log(index)
+    if(index === -1) {
+      console.log("hej")
+      const cartItem:CartItem = new CartItem(0,productsW[i], productsW[i].id);
+      cartItem.qty = 1;
+      shoppingCartList.push(cartItem);
+      console.log(cartItem)
+    }
+    else{
+      shoppingCartList[index].qty++;
+      console.log(shoppingCartList)
     } 
     cartValue ++; //Ökar antalet i vår varukorgs ikon
     shoppingCartHtml(); //Sparar ändringarna som skett till local storage och skapar html för varukorgen
@@ -86,7 +97,6 @@ for (let i = 0; i < productsM.length; i++) {
   title.innerHTML = productsM[i].title;
   price.innerHTML = productsM[i].price +" $".toString();
   addToCartBtn.innerHTML = "Add to cart";
-  productsM[i].qty = 0;
   
   productBox.appendChild(imgContainer);
   imgContainer.appendChild(img);
@@ -97,22 +107,30 @@ for (let i = 0; i < productsM.length; i++) {
   
  // Kollar ifall produkten finns i shopping cart och då ändras qty på produkten, annars läggs den till i shopping cart listan
   addToCartBtn.addEventListener("click", ()=>{
-    if(shoppingCartList.includes(productsM[i])) {
-      shoppingCartList[i].qty++;
-    }else{
-      productsM[i].qty = 1;
-      shoppingCartList.push(productsM[i]);
+    let check = (shoppingCartList:CartItem[], id:number) => {
+      return shoppingCartList.findIndex((obj) => obj.id === id)
     }
+   const index = check(shoppingCartList, productsM[i].id)
+   console.log(index)
+    if(index === -1) {
+      console.log("hej")
+      const cartItem:CartItem = new CartItem(0,productsM[i], productsM[i].id);
+      cartItem.qty = 1;
+      shoppingCartList.push(cartItem);
+      console.log(cartItem)
+    }
+    else{
+      shoppingCartList[index].qty++;
+      console.log(shoppingCartList)
+    } 
     cartValue++; //Ökar antalet i vår varukorgs ikon
     shoppingCartHtml(); //Sparar ändringarna som skett till local storage och skapar html för varukorgen
     showShoppingCartValue(); // Sparar ändringarna i varukorgs ikonen till local storage
   })
 };
     
-
-
 // Skapande av varukorg lista och local storage för den
-let shoppingCartList:IProduct[] = [];
+let shoppingCartList:CartItem[] = [];
 
 const valueFromLs = localStorage.getItem("shoppingCartList");
 
@@ -135,7 +153,7 @@ const shoppingCartHtml = () => {
 }
   /* Loop för varukorg listan */
   for(let i = 0; i < shoppingCartList.length; i++){
-    sum += shoppingCartList[i].price * shoppingCartList[i].qty;
+    sum += Math.trunc(shoppingCartList[i].product.price * shoppingCartList[i].qty);
 
     const productBox = document.createElement("div");
     const imgContainer = document.createElement("div");
@@ -160,9 +178,9 @@ const shoppingCartHtml = () => {
     minusBtn.className = ("qtyContainer--changeQtyBtn");
     plusBtn.className = ("qtyContainer--changeQtyBtn");
     
-    img.src = shoppingCartList[i].image;
-    title.innerHTML = shoppingCartList[i].title;
-    price.innerHTML = shoppingCartList[i].price +" $".toString();
+    img.src = shoppingCartList[i].product.image;
+    title.innerHTML = shoppingCartList[i].product.title;
+    price.innerHTML = shoppingCartList[i].product.price +" $".toString();
     plusBtn.innerHTML = "+";
     qty.innerHTML = shoppingCartList[i].qty.toString();
     minusBtn.innerHTML = "-";
@@ -170,9 +188,9 @@ const shoppingCartHtml = () => {
 
     //Ta bort produkten ur listan och ändra varukorgs ikonen
     removeBtn.addEventListener("click", () => {
+      cartValue = cartValue - shoppingCartList[i].qty;
       shoppingCartList.splice(i,1);
       productBox.remove();
-      cartValue --;
       cartValueTag.innerHTML = "";
       sum = 0;
 
@@ -242,6 +260,10 @@ const shoppingCartHtml = () => {
 
 shoppingCartHtml()
 
+
+
+
+
 //Klick funktion nedan för att navigera till woman/mens sidor från hero
 const imgContainerW = document.querySelector(".main--imgContainerW");
 const imgContainerM = document.querySelector(".main--imgContainerM");
@@ -302,7 +324,7 @@ imgContainerM?.addEventListener("click", ()=>{
     cardNumberDiv.appendChild(cardNumberInput);
   });
 
-  
+
   //Sparar ändringar för varukorgs ikon till local storage
   const showShoppingCartValue = ()=> {
     localStorage.setItem("cartValue", JSON.stringify(cartValue));
@@ -324,7 +346,7 @@ const summaryOfValue = document.getElementById("summaryOfValue") as HTMLParagrap
 let sum: number = 0;
 
 for (let i=0; i< shoppingCartList.length; i++){
-  sum += shoppingCartList[i].price * shoppingCartList[i].qty;
+  sum += shoppingCartList[i].product.price * shoppingCartList[i].qty;
 
   const productBox = document.createElement("div");
   const imgContainer = document.createElement("div");
@@ -347,9 +369,9 @@ for (let i=0; i< shoppingCartList.length; i++){
   plusBtn.className = ("checkOut--plusBtn");
   qtyContainer.className = ("checkOut--qty");
 
-  img.src = shoppingCartList[i].image;
-  title.innerHTML = shoppingCartList[i].title;
-  price.innerHTML = shoppingCartList[i].price +" $".toString();
+  img.src = shoppingCartList[i].product.image;
+  title.innerHTML = shoppingCartList[i].product.title;
+  price.innerHTML = shoppingCartList[i].product.price +" $".toString();
   plusBtn.innerHTML = "+";
   qty.innerHTML = shoppingCartList[i].qty.toString();
   minusBtn.innerHTML = "-";
