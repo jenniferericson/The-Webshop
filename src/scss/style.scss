@@ -241,19 +241,21 @@
   background-color: v.$secondary-color;  
   box-sizing: border-box;
   margin: 30px;
+  padding: 20px;
 
   &__empty {
     display: none;
   }
 
   &--Btn {
-    display: flex;
-    background-color: v.$primary-color;
-    color: v.$secondary-color;
-    border-radius: 20px;
-    cursor: pointer;
-    margin-top: 50px;
-    padding: v.$padding;
+      border: 1px solid v.$border-colour;
+      padding: v.$padding;
+      margin-top: 20px;
+    
+       &:hover {
+         cursor: v.$click;
+         background-color: white; 
+       }
   }
 }
 

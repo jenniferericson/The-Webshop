@@ -91,7 +91,6 @@ export const checkIfEmpty = () => {
     shoppingCartContainer?.appendChild(emtpyTitle);
     shoppingCartContainer?.appendChild(continueShoppingBtn);
     
-    //summaryHtml();
     summaryAside.className = ("sumAside__empty");
   };
 };

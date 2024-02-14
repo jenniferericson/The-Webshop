@@ -174,16 +174,18 @@
   height: 20rem;
   overflow: auto;
   margin-top: 10px;
-  &--footer{
-    width: 100%;
-    padding: 1rem;
-    border-top: 1px solid v.$primary-color;
-    display: flex;
-    justify-content: end;
-    align-items: end;
-    flex-direction: column;
-  }
 }  
+
+.summaryContainer{
+  width: 100%;
+  padding: 1rem;
+  border-top: 1px solid v.$primary-color;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  flex-direction: column;
+}
+
 .checkOut--imgContainer {
   height: 3rem;
   width: 3rem;
@@ -211,11 +213,14 @@
 
 
 .purchaseBtn {
-  cursor: pointer;
-  background-color: v.$border-colour;
-  color: v.$secondary-color;
-  border-radius: 10px;
-  padding: 5px;
+  border: 1px solid v.$border-colour;
+      padding: v.$padding;
+      margin-top: 20px;
+    
+       &:hover {
+         cursor: v.$click;
+         background-color: white; 
+       }
 }
 
   .header--nav {
